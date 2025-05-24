@@ -34,14 +34,30 @@ namespace BookCARTWebApi.Repositories
                     Id = b.Id,
                     Title = b.Title,
                     Author = b.Author,
-                    Description = b.Description,
-                    Category = b.Category,
                     Language = b.Language,
                     Format = b.Format,
+                    IsApproved = b.IsApproved,
+                    Description = b.Description,
+                    Category = b.Category,
+                    PublicationYear = b.PublicationYear,
                     Price = b.Price,
-                    UserName = b.User != null ? b.User.Username : "Unknown",
-                    PhoneNumber = b.User != null ? b.User.PhoneNumber : ""
-                    
+                    UserName = b.User != null ? b.User.Username : "unknown",
+                    PhoneNumber = b.User != null ? b.User.PhoneNumber : "",
+
+                    ImageUrl = b.ImageUrl,     // ✅ Add this
+                    Condition = b.Condition
+
+                    //Id = b.Id,
+                    //Title = b.Title,
+                    //Author = b.Author,
+                    //Description = b.Description,
+                    //Category = b.Category,
+                    //Language = b.Language,
+                    //Format = b.Format,
+                    //Price = b.Price,
+                    //UserName = b.User != null ? b.User.Username : "Unknown",
+                    //PhoneNumber = b.User != null ? b.User.PhoneNumber : ""
+
                 })
                 .ToListAsync();
         }
