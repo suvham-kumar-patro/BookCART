@@ -15,12 +15,23 @@
         <i class="bi bi-upload me-1"></i> Sell Book
       </a>
     </li>
+    
+    <li class="nav-item position-relative">
+  <a class="nav-link text-dark d-flex align-items-center" routerLink="/cart">
+    <span class="position-relative">
+      <i class="bi bi-cart-fill text-primary fs-5"></i>
+      <span
+        *ngIf="cartCount > 0"
+        class="cart-badge position-absolute translate-middle badge rounded-pill bg-danger"
+      >
+        {{ cartCount }}
+      </span>
+    </span>
+    <span class="ms-1">Cart</span>
+  </a>
+</li>
 
-    <li class="nav-item">
-      <a class="nav-link text-dark" routerLink="/cart">
-        <i class="bi bi-cart-fill me-1 text-primary"></i> Cart
-      </a>
-    </li>
+
 
     <li class="nav-item" *ngIf="authService.isLoggedIn()">
       <a class="nav-link text-dark" routerLink="/orders">

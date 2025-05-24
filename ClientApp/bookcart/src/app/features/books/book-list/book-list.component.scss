@@ -1,0 +1,37 @@
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.book-card {
+  background: #f1f8e9;
+  border: 1px solid #c8e6c9;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  h3 {
+    margin: 0.5rem 0;
+    color: #2e7d32;
+  }
+
+  .btn {
+    margin-top: 1rem;
+  }
+}
