@@ -59,7 +59,5 @@ namespace BookCARTWebApi.Repositories
             _context.CartItems.Update(cartItem);
             await _context.SaveChangesAsync();
         }
-
     }
-
 }

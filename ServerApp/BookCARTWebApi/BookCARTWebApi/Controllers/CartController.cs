@@ -48,9 +48,13 @@ namespace BookCARTWebApi.Controllers
         }
 
         [HttpGet("{userId}")]
-        [Authorize(Roles = "Admin")] // Optional: Restrict access
+        [Authorize]
         public async Task<IActionResult> GetCartItemsByUserId(int userId)
         {
+            var currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            if (currentUserId != userId && !User.IsInRole("Admin"))
+                return Forbid();
+
             var items = await _cartRepo.GetCartItemsByUserAsync(userId);
             return Ok(items);
         }
