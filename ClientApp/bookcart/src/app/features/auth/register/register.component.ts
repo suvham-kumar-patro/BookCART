@@ -6,6 +6,7 @@ import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
+  standalone: true,
   imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
@@ -26,8 +27,14 @@ export class RegisterComponent {
     };
 
     this.authService.register(user).subscribe({
-      next: () => this.router.navigate(['/login']),
-      error: () => this.error = 'Registration failed. Try again.'
-    });
-  }
+    next: (res) => {
+      console.log('Registration response:', res);
+      this.router.navigate(['/login']);
+    },
+    error: (err) => {
+      console.error('Registration error:', err);
+      this.error = 'Registration failed. Try again.';
+    }
+  });
+}
 }

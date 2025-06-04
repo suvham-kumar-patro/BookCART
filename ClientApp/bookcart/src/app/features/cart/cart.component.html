@@ -14,13 +14,13 @@
         <button (click)="increase(item)">+</button>
       </div>
 
-      <button (click)="removeItem(item.book.id!)">Remove</button>
+      <button (click)="removeItem(item.id)">Remove</button>
     </div>
   </div>
 
   <div class="cart-summary">
     <p><strong>Total:</strong> ₹{{ totalPrice.toFixed(2) }}</p>
-    <button class="checkout-btn" (click)="checkout()">Checkout</button>
+    <button class="checkout-btn" (click)="checkout()"[disabled]="cartItems.length === 0">Place Order</button>
   </div>
 </div>
 

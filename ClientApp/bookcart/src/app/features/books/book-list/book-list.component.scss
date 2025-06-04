@@ -1,37 +1,108 @@
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
-  padding: 2rem;
+  padding: 2.5rem;
+  background: linear-gradient(to right, #e8f5e9, #f1f8e9);
+  border-radius: 12px;
 }
 
 .book-card {
-  background: #f1f8e9;
+  background: #ffffff;
   border: 1px solid #c8e6c9;
-  border-radius: 10px;
-  padding: 1rem;
+  border-radius: 14px;
+  padding: 1.5rem 1rem;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.15);
+  transition: all 0.35s ease-in-out;
+  position: relative;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(56, 142, 60, 0.25);
   }
 
   img {
     width: 100%;
-    height: auto;
-    max-height: 200px;
+    height: 220px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+    &:hover {
+      transform: scale(1.04);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
   }
 
   h3 {
-    margin: 0.5rem 0;
+    margin: 0.75rem 0 0.4rem;
+    font-size: 1.35rem;
     color: #2e7d32;
+    font-weight: 700;
+    letter-spacing: 0.5px;
   }
 
-  .btn {
-    margin-top: 1rem;
+  p {
+    color: #4e5d6c;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+
+    &.price {
+      color: #1b5e20;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  }
+
+  .card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.2rem;
+
+    .btn {
+      flex: 1;
+      padding: 0.6rem 0.8rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+
+      i {
+        font-size: 1rem;
+      }
+
+      &.btn-outline-primary {
+        background-color: transparent;
+        border: 2px solid #2196f3;
+        color: #2196f3;
+
+        &:hover {
+          background-color: #2196f3;
+          color: white;
+        }
+      }
+
+      &.btn-success {
+        background-color: #43a047;
+        color: white;
+        border: none;
+
+        &:hover {
+          background-color: #2e7d32;
+          transform: scale(1.05);
+          box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4);
+        }
+      }
+    }
   }
 }

@@ -6,17 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = '';
-
-  // private apiUrl = 'https://localhost:5001/api/auth';
+  private apiUrl = 'https://localhost:44309/api/Auth';
 
   constructor(private http: HttpClient) {}
 
-  login(credentials: any, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials);
-  }
+  login(credentials: { username: string; password: string }): Observable<{ token: string }> {
+  return this.http.post<{ token: string }>(`${this.apiUrl}/login`, credentials);
+}
 
-  register(user: any): Observable<any> {
+  register(user: { username: string; password: string; phoneNumber: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 
@@ -33,16 +31,17 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
+    const payload = this.getDecodedToken();
+    return payload?.role === 'admin';
+  }
+
+  getDecodedToken(): any {
     const token = this.getToken();
-    if (!token) return false;
-
+    if (!token) return null;
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.role === 'admin';
-    } catch (e) {
-      console.error('Error decoding token:', e);
-      return false;
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch {
+      return null;
     }
-  } 
+  }
 }
-

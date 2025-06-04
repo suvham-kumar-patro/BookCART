@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CartService, CartItem } from '../../core/services/cart.service';
 @Component({
   selector: 'app-cart',
+  standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
@@ -11,11 +12,14 @@ import { CartService, CartItem } from '../../core/services/cart.service';
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   totalPrice: number = 0;
+  errorMessage ='';
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router ) {}
 
   ngOnInit() {
+    this.cartService.loadCartFromServer();
     this.cartService.cart$.subscribe((items) => {
+      console.log('Cart items:', items);
       this.cartItems = items;
       this.totalPrice = this.cartService.getTotalPrice();
     });
@@ -29,18 +33,24 @@ export class CartComponent implements OnInit {
     this.cartService.decreaseQuantity(item.book.id!);
   }
 
-  removeItem(bookId: number) {
-    this.cartService.removeFromCart(bookId);
+  removeItem(cartItemId: number) {
+    this.cartService.removeFromCart(cartItemId);
   }
-
-  // removeItem(id: number) {
-  //   this.cartService.removeFromCart(id);
-  //   this.cartItems = this.cartService.getCartItems();
-  //   this.totalPrice = this.cartService.getTotalPrice();
-  // }
 
   checkout() {
-    alert('Proceeding to checkout...');
+    this.placeOrder();
   }
 
+  placeOrder() {
+    this.cartService.placeOrder().subscribe({
+      next: () => {
+        this.cartItems = []; 
+        this.totalPrice = 0;
+        this.router.navigate(['/orders']);
+      },
+      error: () => {
+        this.errorMessage = 'Order placement failed. Please try again.';
+      }
+    });
+  }
 }

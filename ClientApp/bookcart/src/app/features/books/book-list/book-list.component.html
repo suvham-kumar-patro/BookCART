@@ -2,8 +2,16 @@
   <div class="book-card" *ngFor="let book of books">
     <img [src]="book.imageUrl" alt="{{ book.title }}" />
     <h3>{{ book.title }}</h3>
-    <p>{{ book.author }}</p>
-    <p><strong>₹{{ book.price }}</strong></p>
-    <a [routerLink]="['/books', book.id]" class="btn btn-primary">View Details</a>
+    <p class="author">{{ book.author }}</p>
+    <p class="price"><strong>₹{{ book.price }}</strong></p>
+
+    <div class="card-actions">
+      <a [routerLink]="['/books', book.id]" class="btn btn-outline-primary">
+        <i class="bi bi-eye"></i> View Details
+      </a>
+      <button class="btn btn-success" (click)="addToCart(book)">
+        <i class="bi bi-cart-plus"></i> Add to Cart
+      </button>
+    </div>
   </div>
 </div>

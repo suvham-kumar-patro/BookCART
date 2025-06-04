@@ -7,6 +7,7 @@ import { RegisterComponent } from './features/auth/register/register.component';
 import { BookDetailComponent } from './features/books/book-detail/book-detail.component';
 import { CartComponent } from './features/cart/cart.component';
 import { SellBookComponent } from './features/sell/sell-book/sell-book.component';
+import { OrdersComponent } from './features/orders/orders.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminDashboardComponent },
+  { path: 'orders', component: OrdersComponent}
 ];

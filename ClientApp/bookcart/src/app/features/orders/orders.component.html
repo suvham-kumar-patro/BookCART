@@ -1,0 +1,49 @@
+<!-- <div class="orders-container">
+  <h2>My Orders</h2>
+
+  <div *ngIf="loading">Loading orders...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!loading && orders.length === 0">
+    You haven't placed any orders yet.
+  </div>
+
+  <div class="order-card" *ngFor="let order of orders">
+    <h4>Order #{{ order.id }}</h4>
+    <ul>
+      <li *ngFor="let item of order.orderItems">
+        {{ item.book.title }} - ₹{{ item.book.price }} x {{ item.quantity }}
+      </li>
+    </ul>
+    <p><strong>Total Items:</strong> {{ order.orderItems.length }}</p>
+  </div>
+</div> -->
+
+
+<div class="orders-container my-orders-container">
+  <h2>My Orders</h2>
+
+  <div *ngIf="loading">Loading orders...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!loading && orders.length === 0">
+    You haven't placed any orders yet.
+  </div>
+
+  <div class="order-card" *ngFor="let order of orders">
+    <h4>Order #{{ order.id }}</h4>
+
+    <div class="order-items">
+      <div class="item" *ngFor="let item of order.orderItems">
+        <img [src]="item.book.imageUrl" alt="{{ item.book.title }}" />
+        <div class="details">
+          <h5>{{ item.book.title }}</h5>
+          <p>₹{{ item.book.price }} x {{ item.quantity }}</p>
+          <p class="price">Total: ₹{{ item.book.price * item.quantity | number:'1.2-2' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <p><strong>Total Items:</strong> {{ order.orderItems.length }}</p>
+  </div>
+</div>

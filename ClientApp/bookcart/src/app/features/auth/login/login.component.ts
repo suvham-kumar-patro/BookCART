@@ -6,6 +6,7 @@ import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -23,9 +24,12 @@ export class LoginComponent {
       return;
     }
 
-    this.authService.login(this.username, this.password).subscribe({
-      next: () => this.router.navigate(['/books']),
-      error: () => this.error = 'Invalid credentials'
-    });
+    this.authService.login({ username: this.username, password: this.password }).subscribe({
+  next: (res) => {
+    localStorage.setItem('token', res.token);
+    this.router.navigate(['/books']);
+  },
+  error: () => this.error = 'Invalid credentials'
+});
   }
 }

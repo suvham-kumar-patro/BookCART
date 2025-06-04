@@ -7,6 +7,7 @@ import { CartService } from '../../../core/services/cart.service';
 
 @Component({
   selector: 'app-book-detail',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './book-detail.component.html',
   styleUrl: './book-detail.component.scss'
