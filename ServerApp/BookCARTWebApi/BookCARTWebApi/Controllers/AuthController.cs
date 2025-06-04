@@ -41,7 +41,7 @@ namespace BookCARTWebApi.Controllers
             user.PasswordHash = _hasher.HashPassword(user, dto.Password);
             await _userRepo.AddUserAsync(user);
 
-            return Ok("User registered successfully.");
+            return Ok(new { message = "User registered successfully." });
         }
 
         [HttpPost("login")]

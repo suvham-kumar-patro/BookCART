@@ -19,60 +19,145 @@ namespace BookCARTWebApi.Controllers
             _cartRepo = cartRepo;
         }
 
+        // POST: api/Cart/add
         [HttpPost("add")]
         [Authorize]
         public async Task<IActionResult> AddToCart([FromBody] CartItemDto dto)
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-
-            var cartItem = new CartItem
+            if (dto.Quantity < 1)
             {
-                UserId = userId,
-                BookId = dto.BookId,
-                Quantity = dto.Quantity,
-                Price = dto.Price
-            };
+                return BadRequest(new { message = "Quantity must be at least 1." });
+            }
 
-            await _cartRepo.AddAsync(cartItem);
-            await _cartRepo.SaveAsync();
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var existingCartItem = await _cartRepo.GetCartItemAsync(userId, dto.BookId);
 
-            return Ok(new { message = "Item added to cart." });
+            if (existingCartItem != null)
+            {
+                // ✅ Add to existing quantity
+                existingCartItem.Quantity += dto.Quantity;
+                await _cartRepo.UpdateCartItemAsync(existingCartItem);
+            }
+            else
+            {
+                var cartItem = new CartItem
+                {
+                    UserId = userId,
+                    BookId = dto.BookId,
+                    Quantity = dto.Quantity,
+                    Price = dto.Price
+                };
+                await _cartRepo.AddToCartAsync(cartItem);
+            }
+
+            return Ok(new { message = "Item added/updated in cart." });
         }
 
+        [HttpGet("all")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAllCartItems()
+        {
+            var items = await _cartRepo.GetAllCartItemsAsync();
+
+            var dtoItems = items.Select(item => new CartItemAdminDto
+            {
+                CartItemId = item.Id,
+                Username = item.User?.Username,
+                PhoneNumber = item.User?.PhoneNumber,
+                UserId = item.UserId,
+                BookId = item.BookId,
+                Title = item.Book?.Title,
+                ImageUrl = item.Book?.ImageUrl,
+                Price = item.Price,
+                Quantity = item.Quantity
+            });
+
+            return Ok(dtoItems);
+        }
+
+
+        // GET: api/Cart
         [HttpGet]
         public async Task<IActionResult> GetCartItems()
         {
-            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out var userId))
+            {
+                return Unauthorized("User ID not found in token.");
+            }
+
             var items = await _cartRepo.GetCartItemsByUserAsync(userId);
-            return Ok(items);
+
+            var dtoItems = items.Select(item => new CartItemDto
+            {
+                Id = item.Id,
+                BookId = item.BookId,
+                Title = item.Book?.Title ?? "Unknown",
+                ImageUrl = item.Book?.ImageUrl ?? string.Empty,
+                Price = item.Price,
+                Quantity = item.Quantity
+            }).ToList();
+
+            return Ok(dtoItems);
         }
 
+
+        // GET: api/Cart/{userId}
         [HttpGet("{userId}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetCartItemsByUserId(int userId)
         {
-            var currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-            if (currentUserId != userId && !User.IsInRole("Admin"))
-                return Forbid();
-
             var items = await _cartRepo.GetCartItemsByUserAsync(userId);
-            return Ok(items);
+
+            var dtoItems = items.Select(item => new CartItemDto
+            {
+                Id = item.Id,
+                BookId = item.BookId,
+                Title = item.Book?.Title,
+                ImageUrl = item.Book?.ImageUrl,
+                Price = item.Price,
+                Quantity = item.Quantity
+            });
+
+            return Ok(dtoItems);
         }
 
+        [HttpPut("update")]
+        [Authorize]
+        public async Task<IActionResult> UpdateQuantity([FromBody] CartItemDto dto)
+        {
+            if (dto.Quantity < 1)
+                return BadRequest(new { message = "Quantity must be at least 1." });
+
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var existingCartItem = await _cartRepo.GetCartItemAsync(userId, dto.BookId);
+
+            if (existingCartItem == null)
+                return NotFound(new { message = "Item not found in cart." });
+
+            existingCartItem.Quantity = dto.Quantity;
+            await _cartRepo.UpdateCartItemAsync(existingCartItem);
+
+            return Ok(new { message = "Quantity updated." });
+        }
+
+
+        // DELETE: api/Cart/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveFromCart(int id)
         {
             await _cartRepo.RemoveFromCartAsync(id);
-            return Ok("Item removed");
+            return Ok(new { message = "Item removed from cart." });
         }
 
+        // DELETE: api/Cart/clear
         [HttpDelete("clear")]
         public async Task<IActionResult> ClearCart()
         {
-            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             await _cartRepo.ClearCartAsync(userId);
-            return Ok("Cart cleared");
+            return Ok(new { message = "Cart cleared." });
         }
     }
-
 }

@@ -212,12 +212,38 @@
   },
   {
     "ContainingType": "BookCARTWebApi.Controllers.CartController",
+    "Method": "GetAllCartItems",
+    "RelativePath": "api/Cart/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookCARTWebApi.Controllers.CartController",
     "Method": "ClearCart",
     "RelativePath": "api/Cart/clear",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookCARTWebApi.Controllers.CartController",
+    "Method": "UpdateQuantity",
+    "RelativePath": "api/Cart/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BookCARTWebApi.DTOs.CartItemDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
