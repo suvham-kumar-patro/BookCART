@@ -1,0 +1,48 @@
+<!-- user-profile.component.html -->
+<div class="container mt-4">
+  <h2>User Profile</h2>
+
+  <div class="card p-3 mb-4">
+    <h4>Basic Info</h4>
+    <p><strong>Username:</strong> {{ profile?.username }}</p>
+
+    <div *ngIf="!editMode">
+      <p><strong>Phone Number:</strong> {{ profile?.phoneNumber }}</p>
+      <button class="btn btn-primary" (click)="editMode = true">Edit</button>
+    </div>
+
+    <div *ngIf="editMode">
+      <label>Phone Number</label>
+      <input [(ngModel)]="phoneNumber" class="form-control mb-2" />
+      <button class="btn btn-success me-2" (click)="saveProfile()">Save</button>
+      <button class="btn btn-secondary" (click)="editMode = false">Cancel</button>
+    </div>
+  </div>
+
+  <div class="card p-3 mb-4">
+    <h4>Listed Books</h4>
+    <div *ngIf="profile?.listedBooks?.length; else noBooks">
+      <ul>
+        <li *ngFor="let book of profile?.listedBooks">
+          {{ book.title }} ({{ book.format }}) - ₹{{ book.price }}
+        </li>
+      </ul>
+    </div>
+    <ng-template #noBooks>No books listed.</ng-template>
+  </div>
+
+  <div class="card p-3">
+    <h4>Order History</h4>
+    <div *ngIf="profile?.orderHistory?.length; else noOrders">
+      <div *ngFor="let order of profile?.orderHistory" class="mb-3">
+        <p><strong>Order #{{ order.id }}</strong> - ₹{{ order.totalAmount }} on {{ order.orderDate | date }}</p>
+        <ul>
+          <li *ngFor="let item of order.items">
+            {{ item.bookTitle }} (x{{ item.quantity }}) - ₹{{ item.price }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <ng-template #noOrders>No orders yet.</ng-template>
+  </div>
+</div>

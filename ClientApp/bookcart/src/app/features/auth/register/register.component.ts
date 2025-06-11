@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent {
   phoneNumber = '';
   error = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
   register() {
     const user = {
@@ -29,11 +30,13 @@ export class RegisterComponent {
     this.authService.register(user).subscribe({
     next: (res) => {
       console.log('Registration response:', res);
+      this.toastr.success('Registration successful!', 'Please login');
       this.router.navigate(['/login']);
     },
     error: (err) => {
       console.error('Registration error:', err);
-      this.error = 'Registration failed. Try again.';
+      this.toastr.error('Registration failed. Try again.', 'Error');
+      // this.error = 'Registration failed. Try again.';
     }
   });
 }

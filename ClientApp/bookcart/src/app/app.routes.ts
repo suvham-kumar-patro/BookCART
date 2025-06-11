@@ -8,6 +8,8 @@ import { BookDetailComponent } from './features/books/book-detail/book-detail.co
 import { CartComponent } from './features/cart/cart.component';
 import { SellBookComponent } from './features/sell/sell-book/sell-book.component';
 import { OrdersComponent } from './features/orders/orders.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,6 +19,7 @@ export const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'admin', component: AdminDashboardComponent },
-  { path: 'orders', component: OrdersComponent}
+  { path: 'admin', canActivate: [AuthGuard], data: { requiresAdmin: true }, component: AdminDashboardComponent },
+  { path: 'orders', component: OrdersComponent},
+  { path: 'profile', component: UserProfileComponent}
 ];

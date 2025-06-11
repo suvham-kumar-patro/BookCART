@@ -1,0 +1,22 @@
+.admin-dashboard {
+  h2 {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .btn-group {
+    flex-wrap: wrap;
+  }
+
+  table {
+    th, td {
+      vertical-align: middle;
+    }
+  }
+
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+}

@@ -1,0 +1,141 @@
+// user-profile.component.scss
+
+:host {
+  display: block;
+  padding: 2rem;
+  background: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+}
+
+h2 {
+  color: #34495e;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin: 0.3rem 0;
+    font-size: 1rem;
+    color: #555;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      color: #444;
+    }
+  }
+}
+
+input.form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  font-size: 1rem;
+  max-width: 300px;
+}
+
+button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+
+  &.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  &.btn-success {
+    background-color: #28a745;
+    border: none;
+    color: white;
+
+    &:hover {
+      background-color: #218838;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+
+    &:hover {
+      background-color: #5a6268;
+    }
+  }
+}
+
+
+
+
+// .container {
+//   max-width: 800px;
+//   margin: 0 auto;
+// }
+
+// .card {
+//   border: 1px solid #e0e0e0;
+//   border-radius: 12px;
+//   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+//   background-color: #fff;
+// }
+
+// h2, h4 {
+//   color: #2c3e50;
+// }
+
+// ul {
+//   list-style-type: disc;
+//   padding-left: 20px;
+// }
+
+// li {
+//   padding: 4px 0;
+//   font-size: 15px;
+// }
+
+// p {
+//   margin-bottom: 6px;
+//   font-size: 15px;
+// }
+
+// input.form-control {
+//   max-width: 300px;
+// }
+
+// button {
+//   min-width: 100px;
+// }

@@ -4,11 +4,13 @@ import { Book } from '../../../core/models/book';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../../core/services/cart.service';
+import { Router, RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-book-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './book-detail.component.html',
   styleUrl: './book-detail.component.scss'
 })
@@ -18,7 +20,9 @@ export class BookDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
-    private bookService: BookService
+    private bookService: BookService,
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -32,8 +36,13 @@ export class BookDetailComponent implements OnInit {
   addToCart(): void {
   if (this.book) {
     this.cartService.addToCart(this.book);
-    alert('Book added to cart!');
+    this.toastr.success(`"${this.book.title}" added to cart!`, 'Added to Cart');
+    // alert('Book added to cart!');
   }
+}
+
+goBack(): void {
+  this.router.navigate(['/books']);
 }
 
 }

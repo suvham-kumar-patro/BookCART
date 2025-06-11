@@ -8,9 +8,13 @@
   <p><strong>Format:</strong> {{ book.format }}</p>
   <p><strong>Price:</strong> ₹{{ book.price }}</p>
 
-  <button class="btn btn-primary" (click)="addToCart()">
+  <button class="btn btn-primary me-2" (click)="addToCart()">
   <i class="bi bi-cart-plus"></i> Add to Cart
 </button>
+
+<button class="btn btn-outline-secondary" (click)="goBack()">
+    <i class="bi bi-arrow-left"></i> Back to Books
+  </button>
 </div>
 
 

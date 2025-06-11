@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { BehaviorSubject, EMPTY, Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Book } from '../models/book';
 
 export interface CartItem {
@@ -87,33 +87,38 @@ export class CartService {
         this.loadCartFromServer();
       });
     } else {
-      // Quantity = 1, so remove item
       this.removeFromCart(currentItem.id ?? 0);
     }
   }
 }
 
-
-  // decreaseQuantity(bookId: number) {
-  //   const currentItem = this.cartItems.value.find(item => item.book.id === bookId);
-  //   if (currentItem && currentItem.quantity > 1) {
-  //     const body = { bookId, quantity: currentItem.quantity - 1 };
-  //     this.http.post(`${this.apiUrl}/add`, body, { headers: this.getAuthHeaders() }).subscribe(() => this.loadCartFromServer());
-  //   } else {
-  //     this.removeFromCart(currentItem?.id ?? 0); // fallback in case id is undefined
-  //   }
-  // }
-
-  removeFromCart(cartItemId: number) {
-    if (!cartItemId) {
+removeFromCart(cartItemId: number): Observable<void> {
+  if (!cartItemId) {
     console.error('Cart item ID is undefined!');
-    return;
+    return EMPTY;
   }
-  this.http.delete(`${this.apiUrl}/${cartItemId}`, { headers: this.getAuthHeaders() }).subscribe({
-    next: () => this.loadCartFromServer(),
-    error: (err) => console.error('Failed to remove from cart', err)
-  });
+  return this.http.delete<void>(`${this.apiUrl}/${cartItemId}`, { headers: this.getAuthHeaders() }).pipe(
+    tap(() => {
+      this.loadCartFromServer(); 
+    }),
+    catchError(err => {
+      console.error('Failed to remove from cart', err);
+      return throwError(() => err);
+    })
+  );
 }
+
+
+//   removeFromCart(cartItemId: number) {
+//     if (!cartItemId) {
+//     console.error('Cart item ID is undefined!');
+//     return;
+//   }
+//   this.http.delete(`${this.apiUrl}/${cartItemId}`, { headers: this.getAuthHeaders() }).subscribe({
+//     next: () => this.loadCartFromServer(),
+//     error: (err) => console.error('Failed to remove from cart', err)
+//   });
+// }
 
 clearCart() {
   this.http.delete(`${this.apiUrl}/clear`, { headers: this.getAuthHeaders() }).subscribe(() => {

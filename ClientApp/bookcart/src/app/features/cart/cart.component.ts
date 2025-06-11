@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { CartService, CartItem } from '../../core/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-cart',
   standalone: true,
@@ -14,7 +15,7 @@ export class CartComponent implements OnInit {
   totalPrice: number = 0;
   errorMessage ='';
 
-  constructor(private cartService: CartService, private router: Router ) {}
+  constructor(private cartService: CartService, private router: Router, private toastr: ToastrService ) {}
 
   ngOnInit() {
     this.cartService.loadCartFromServer();
@@ -33,9 +34,22 @@ export class CartComponent implements OnInit {
     this.cartService.decreaseQuantity(item.book.id!);
   }
 
-  removeItem(cartItemId: number) {
-    this.cartService.removeFromCart(cartItemId);
-  }
+  removeItem(cartItemId: number): void {
+  const removedItem = this.cartItems.find(item => item.id === cartItemId); // fix here
+
+  console.log('Removing item:', removedItem); 
+
+  this.cartService.removeFromCart(cartItemId).subscribe({
+    next: () => {
+      if (removedItem) {
+        this.toastr.info(`"${removedItem.book.title}" removed from cart.`, 'Item Removed');
+      }
+    },
+    error: () => {
+      this.toastr.error('Failed to remove item from cart.', 'Error');
+    }
+  });
+}
 
   checkout() {
     this.placeOrder();
@@ -46,10 +60,13 @@ export class CartComponent implements OnInit {
       next: () => {
         this.cartItems = []; 
         this.totalPrice = 0;
+
+        this.toastr.success('Your order has been placed successfully!', 'Order Placed');
         this.router.navigate(['/orders']);
       },
       error: () => {
         this.errorMessage = 'Order placement failed. Please try again.';
+        this.toastr.error(this.errorMessage, 'Order Failed');
       }
     });
   }
