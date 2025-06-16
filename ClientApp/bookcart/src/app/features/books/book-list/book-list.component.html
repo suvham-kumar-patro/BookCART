@@ -1,6 +1,25 @@
+<div class="filter-bar">
+  <input type="text" [(ngModel)]="filters.search" (input)="onFilterChange()" placeholder="Search books..." />
+
+  <select [(ngModel)]="filters.category" (change)="onFilterChange()">
+    <option value="">All Categories</option>
+    <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+  </select>
+
+  <select [(ngModel)]="filters.format" (change)="onFilterChange()">
+    <option value="">All Formats</option>
+    <option value="Hardcover">Hardcover</option>
+    <option value="Paperback">Paperback</option>
+    <option value="Ebook">Ebook</option>
+  </select>
+
+  <input type="number" [(ngModel)]="filters.minPrice" (input)="onFilterChange()" placeholder="Min Price" />
+  <input type="number" [(ngModel)]="filters.maxPrice" (input)="onFilterChange()" placeholder="Max Price" />
+</div>
+
 <div class="books-grid">
   <div class="book-card" *ngFor="let book of books">
-    <img [src]="book.imageUrl" alt="{{ book.title }}" />
+    <img [src]="'https://localhost:44309' + book.imageUrl" alt="{{ book.title }}" />
     <h3>{{ book.title }}</h3>
     <p class="author">{{ book.author }}</p>
     <p class="price"><strong>₹{{ book.price }}</strong></p>

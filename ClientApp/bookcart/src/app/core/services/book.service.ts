@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Book } from '../models/book';
@@ -27,10 +27,22 @@ export class BookService {
   return this.http.get<Book>(`${this.apiUrl}/${id}`);
 }
 
-addBook(formData: FormData) {
-  return this.http.post(`${this.apiUrl}/Books/sell`, formData, {
-    headers: this.getAuthHeaders()
-  });
+filterBooks(filters: any): Observable<Book[]> {
+  let params = new HttpParams();
+
+  if (filters.search) params = params.set('search', filters.search);
+  if (filters.category) params = params.set('category', filters.category);
+  if (filters.format) params = params.set('format', filters.format);
+  if (filters.minPrice != null) params = params.set('minPrice', filters.minPrice.toString());
+  if (filters.maxPrice != null) params = params.set('maxPrice', filters.maxPrice.toString());
+
+  return this.http.get<Book[]>(`https://localhost:44309/api/books/filter`, { params });
+}
+
+
+addBook(formData: FormData): Observable<any> {
+  return this.http.post(`${this.apiUrl}/sell`, formData);
+    // headers: this.getAuthHeaders());
 }
 
 

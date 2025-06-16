@@ -108,18 +108,6 @@ removeFromCart(cartItemId: number): Observable<void> {
   );
 }
 
-
-//   removeFromCart(cartItemId: number) {
-//     if (!cartItemId) {
-//     console.error('Cart item ID is undefined!');
-//     return;
-//   }
-//   this.http.delete(`${this.apiUrl}/${cartItemId}`, { headers: this.getAuthHeaders() }).subscribe({
-//     next: () => this.loadCartFromServer(),
-//     error: (err) => console.error('Failed to remove from cart', err)
-//   });
-// }
-
 clearCart() {
   this.http.delete(`${this.apiUrl}/clear`, { headers: this.getAuthHeaders() }).subscribe(() => {
     this.cartItems.next([]);

@@ -36,7 +36,6 @@ export class RegisterComponent {
     error: (err) => {
       console.error('Registration error:', err);
       this.toastr.error('Registration failed. Try again.', 'Error');
-      // this.error = 'Registration failed. Try again.';
     }
   });
 }

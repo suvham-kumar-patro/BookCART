@@ -37,7 +37,6 @@ export class BookDetailComponent implements OnInit {
   if (this.book) {
     this.cartService.addToCart(this.book);
     this.toastr.success(`"${this.book.title}" added to cart!`, 'Added to Cart');
-    // alert('Book added to cart!');
   }
 }
 

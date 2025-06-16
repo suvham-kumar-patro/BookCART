@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../core/services/admin.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -21,7 +22,7 @@ export class AdminDashboardComponent implements OnInit {
 
   selectedUserId: number | null = null;
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.loadPendingBooks();
@@ -32,16 +33,28 @@ export class AdminDashboardComponent implements OnInit {
       this.pendingBooks = data;
     });
   }
-
+  
   approveBook(id: number) {
-    this.adminService.approveBook(id).subscribe(() => {
-      this.loadPendingBooks();
-    });
-  }
+    this.adminService.approveBook(id).subscribe({
+      next: () => {
+        this.toastr.success('Book approved successfully!', 'Success');
+        this.loadPendingBooks();
+      },
+      error: () => {
+        this.toastr.error('Failed to approve book', 'Error');
+    }
+  });
+}
 
   rejectBook(id: number) {
-    this.adminService.rejectBook(id).subscribe(() => {
-      this.loadPendingBooks();
+    this.adminService.rejectBook(id).subscribe({
+      next: () => {
+        this.toastr.warning('Book rejected.', 'Rejected');
+        this.loadPendingBooks();
+      },
+      error: () => {
+        this.toastr.error('Failed to reject book', 'Error');
+      }
     });
   }
 

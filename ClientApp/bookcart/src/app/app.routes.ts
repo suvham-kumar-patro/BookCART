@@ -10,6 +10,7 @@ import { SellBookComponent } from './features/sell/sell-book/sell-book.component
 import { OrdersComponent } from './features/orders/orders.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,5 +22,6 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'admin', canActivate: [AuthGuard], data: { requiresAdmin: true }, component: AdminDashboardComponent },
   { path: 'orders', component: OrdersComponent},
-  { path: 'profile', component: UserProfileComponent}
+  { path: 'profile', component: UserProfileComponent},
+  { path: 'unauthorized', component: UnauthorizedComponent }
 ];

@@ -53,16 +53,4 @@ export class NavbarComponent implements OnInit {
     });
   });
 }
-
-
-//   logout(): void {
-//     this.authService.logout();
-//     this.toastr.info('You have been logged out.', 'Logout',{
-//     timeOut: 40000,
-//   });
-//   setTimeout(() => {
-//     this.router.navigate(['/login']);
-//   }, 40000);
-// }
-
 }

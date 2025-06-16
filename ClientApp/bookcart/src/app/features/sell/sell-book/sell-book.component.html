@@ -14,6 +14,26 @@
     </div>
 
     <div class="form-group">
+      <input formControlName="publisher" placeholder="Publisher" />
+      <i class="bi bi-building"></i>
+    </div>
+
+    <div class="form-group">
+      <input formControlName="stream" placeholder="Stream" />
+      <i class="bi bi-diagram-3"></i>
+    </div>
+
+    <div class="form-group">
+      <input formControlName="exam" placeholder="Exam" />
+      <i class="bi bi-pencil-square"></i>
+    </div>
+
+    <div class="form-group">
+      <input formControlName="subject" placeholder="Subject" />
+      <i class="bi bi-book-half"></i>
+    </div>
+
+    <div class="form-group">
       <input formControlName="language" placeholder="Language" />
       <i class="bi bi-globe"></i>
     </div>
@@ -80,7 +100,7 @@
     </div>
 
     <div class="form-group">
-      <input type="file" (change)="onFileSelected($event)" />
+      <input type="file" (change)="onFileSelected($event)" #fileInput/>
       <i class="bi bi-upload"></i>
     </div>
 

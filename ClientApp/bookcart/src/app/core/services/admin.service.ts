@@ -34,7 +34,6 @@ export class AdminService {
     return this.http.get<any[]>(`${this.adminApi}/orders`);
   }
 
-  // 👇 New Cart Admin Methods
   getAllCartItems(): Observable<CartItemAdminDto[]> {
     return this.http.get<CartItemAdminDto[]>(`${this.cartApi}/all`);
   }

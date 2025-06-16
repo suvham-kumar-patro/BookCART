@@ -1,6 +1,6 @@
 <div *ngIf="book" class="book-detail-container">
   <h2>{{ book.title }}</h2>
-  <img [src]="book.imageUrl" alt="{{ book.title }}" />
+  <img [src]="'https://localhost:44309' + book.imageUrl" alt="{{ book.title }}" />
   <p><strong>Author:</strong> {{ book.author }}</p>
   <p><strong>Language:</strong> {{ book.language }}</p>
   <p><strong>Condition:</strong> {{ book.condition }}</p>

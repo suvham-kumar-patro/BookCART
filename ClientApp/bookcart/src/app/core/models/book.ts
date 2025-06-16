@@ -6,11 +6,11 @@ export interface Book {
   author: string;
   publisher: string;
   price: number;
-  category: string;       // e.g., Academic, Entrance Exams
-  format: string;         // Paperback, PDF, etc.
-  language: string;       // English, Hindi, etc.
-  condition: string;      // New, Used
+  category: string;       
+  format: string;         
+  language: string;      
+  condition: string;      
   publicationYear: number;
   isApproved?: boolean;
-  userId?: number;        // ID of seller
+  userId?: number;        
 }

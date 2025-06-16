@@ -10,28 +10,44 @@
 
   <!-- Pending Books Section -->
   <div *ngIf="view === 'pending'">
-    <h4>Pending Books</h4>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Uploaded By</th>
-          <th>Phone</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let book of pendingBooks">
-          <td>{{ book.title }}</td>
-          <td>{{ book.user?.username }}</td>
-          <td>{{ book.user?.phoneNumber }}</td>
-          <td>
-            <button class="btn btn-success btn-sm me-2" (click)="approveBook(book.id)">Approve</button>
-            <button class="btn btn-danger btn-sm" (click)="rejectBook(book.id)">Reject</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <h4 class="mb-4">Pending Books</h4>
+<table class="table table-bordered table-hover align-middle">
+  <thead class="table-light">
+    <tr>
+      <th>Image</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Format</th>
+      <th>Condition</th>
+      <th>Category</th>
+      <th>Price (₹)</th>
+      <th>Uploaded By</th>
+      <th>Phone</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of pendingBooks">
+      <td>
+        <img [src]="'https://localhost:44309' + book.imageUrl" width="100" class="img-thumbnail" />
+      </td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.format }}</td>
+      <td>{{ book.condition }}</td>
+      <td>{{ book.category }}</td>
+      <td>{{ book.price }}</td>
+      <td>{{ book.userName }}</td>
+      <td>{{ book.phoneNumber }}</td>
+      <td>
+        <div class="action-buttons">
+        <button class="btn btn-success btn-sm me-2" (click)="approveBook(book.id)">Approve <i class="bi bi-check-circle"></i></button>
+        <button class="btn btn-danger btn-sm" (click)="rejectBook(book.id)">Reject <i class="bi bi-x-circle"></i></button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
   </div>
 
   <!-- Users Section -->
@@ -136,80 +152,3 @@
     </table>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="admin-dashboard container mt-4">
-  <h2 class="mb-4">📊 Admin Dashboard</h2>
-
-  <div class="btn-group mb-4">
-    <button class="btn btn-outline-primary" (click)="view = 'pending'; loadPendingBooks()">Pending Books</button>
-    <button class="btn btn-outline-primary" (click)="view = 'users'; loadUsers()">All Users</button>
-    <button class="btn btn-outline-primary" (click)="view = 'orders'; loadOrders()">All Orders</button>
-  </div>
-
-  <!-- Pending Books Section -->
-  <!-- <div *ngIf="view === 'pending'">
-    <h4>Pending Books</h4>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Uploaded By</th>
-          <th>Phone</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let book of pendingBooks">
-          <td>{{ book.title }}</td>
-          <td>{{ book.user?.username }}</td>
-          <td>{{ book.user?.phoneNumber }}</td>
-          <td>
-            <button class="btn btn-success btn-sm me-2" (click)="approveBook(book.id)">Approve</button>
-            <button class="btn btn-danger btn-sm" (click)="rejectBook(book.id)">Reject</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Users Section -->
-  <!-- -> -->
-
-
-<!-- <h2>📚 Pending Books for Approval</h2>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Uploaded By</th>
-      <th>Phone</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let book of pendingBooks">
-      <td>{{ book.title }}</td>
-      <td>{{ book.user?.username }}</td>
-      <td>{{ book.user?.phoneNumber }}</td>
-      <td>
-        <button class="btn btn-success btn-sm" (click)="approveBook(book.id)">Approve</button>
-        <button class="btn btn-danger btn-sm" (click)="rejectBook(book.id)">Reject</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="mt-4">
-  <a routerLink="/admin/users" class="btn btn-primary me-2">View All Users</a>
-  <a routerLink="/admin/orders" class="btn btn-secondary">View All Orders</a>
-</div> -->

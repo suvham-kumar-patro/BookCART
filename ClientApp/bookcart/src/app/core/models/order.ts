@@ -5,6 +5,6 @@ export interface Order {
   userId?: number;
   items: OrderItem[];
   totalAmount: number;
-  status?: string;       // Pending, Paid, Shipped, etc.
+  status?: string;       
   createdAt?: Date;
 }

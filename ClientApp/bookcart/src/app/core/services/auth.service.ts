@@ -38,7 +38,7 @@ export class AuthService {
   register(user: { username: string; password: string; phoneNumber: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
-  
+
   logout(): void {
     localStorage.removeItem('token');
     this.isLoggedInSubject.next(false);
@@ -63,16 +63,25 @@ export class AuthService {
   }
 
   getDecodedToken(): DecodedToken | null {
-    const token = this.getToken();
-    if (!token) return null;
+  const token = this.getToken();
+  if (!token) return null;
 
-    try {
-      return jwtDecode<DecodedToken>(token);
-    } catch (error) {
-      console.error('Invalid token', error);
-      return null;
-    }
+  try {
+    const decoded: any = jwtDecode(token);
+
+    const roleClaim = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+    const username = decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+
+    return {
+      ...decoded,
+      role: roleClaim,
+      username: username
+    };
+  } catch (error) {
+    console.error('Invalid token', error);
+    return null;
   }
+}
 
   isAdmin(): boolean {
     return this.hasRole('admin');

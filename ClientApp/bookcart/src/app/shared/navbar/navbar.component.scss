@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #00796b; // Brighter modern teal
+  background-color: #00796b; 
   color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
@@ -14,7 +14,7 @@
     font-size: 1.5rem;
 
     &:hover {
-      color: #c8e6c9; // soft green hover
+      color: #c8e6c9; 
     }
   }
 
@@ -32,7 +32,7 @@
       transition: color 0.2s ease-in-out;
 
       &:hover {
-        color: #aed581; // lime green accent
+        color: #aed581;
         text-decoration: underline;
       }
     }
