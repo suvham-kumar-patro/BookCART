@@ -136,3 +136,4 @@ C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\Boo
 C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\obj\Debug\net8.0\BookCARTWebApi.pdb
 C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\obj\Debug\net8.0\BookCARTWebApi.genruntimeconfig.cache
 C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\obj\Debug\net8.0\ref\BookCARTWebApi.dll
+C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\bin\Debug\net8.0\BookCARTWebApi.staticwebassets.runtime.json

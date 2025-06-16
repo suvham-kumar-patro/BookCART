@@ -79,5 +79,19 @@ namespace BookCARTWebApi.Controllers
 
             return Ok(profile);
         }
+
+        [HttpPut("profile")]
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto dto)
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return NotFound();
+
+            user.PhoneNumber = dto.PhoneNumber;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 }

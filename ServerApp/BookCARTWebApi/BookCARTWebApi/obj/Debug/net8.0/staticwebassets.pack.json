@@ -1,0 +1,53 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\0325045f-99af-43a8-a038-67e7fab74988.jpg",
+      "PackagePath": "staticwebassets\\uploads\\0325045f-99af-43a8-a038-67e7fab74988.jpg"
+    },
+    {
+      "Id": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\0c7d9dd7-e7a6-48c5-be60-1dffce33a554.jpg",
+      "PackagePath": "staticwebassets\\uploads\\0c7d9dd7-e7a6-48c5-be60-1dffce33a554.jpg"
+    },
+    {
+      "Id": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\194d9046-7b2c-406d-a465-f8da68cfee64.jpg",
+      "PackagePath": "staticwebassets\\uploads\\194d9046-7b2c-406d-a465-f8da68cfee64.jpg"
+    },
+    {
+      "Id": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\4c38f612-2c29-494c-b114-3af00eb5ad6f.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\4c38f612-2c29-494c-b114-3af00eb5ad6f.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\c7d709fe-de8c-4921-8ab3-f3c90df19652.jpg",
+      "PackagePath": "staticwebassets\\uploads\\c7d709fe-de8c-4921-8ab3-f3c90df19652.jpg"
+    },
+    {
+      "Id": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\cde36762-614a-4590-94b9-cb68bfd75d9c.jpg",
+      "PackagePath": "staticwebassets\\uploads\\cde36762-614a-4590-94b9-cb68bfd75d9c.jpg"
+    },
+    {
+      "Id": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\e13eb4d3-0477-4ad1-813a-953b27924d8e.jpg",
+      "PackagePath": "staticwebassets\\uploads\\e13eb4d3-0477-4ad1-813a-953b27924d8e.jpg"
+    },
+    {
+      "Id": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\e73634b3-046e-42d4-b23e-d749f978bd6b.jpg",
+      "PackagePath": "staticwebassets\\uploads\\e73634b3-046e-42d4-b23e-d749f978bd6b.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BookCARTWebApi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BookCARTWebApi.props",
+      "PackagePath": "build\\BookCARTWebApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BookCARTWebApi.props",
+      "PackagePath": "buildMultiTargeting\\BookCARTWebApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BookCARTWebApi.props",
+      "PackagePath": "buildTransitive\\BookCARTWebApi.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
