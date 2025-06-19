@@ -7,7 +7,7 @@ import { Book } from '../models/book';
   providedIn: 'root'
 })
 export class BookService {
-  private apiUrl = 'https://localhost:44309/api/Books';
+  private apiUrl = 'https://localhost:7231/api/Books';
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +36,7 @@ filterBooks(filters: any): Observable<Book[]> {
   if (filters.minPrice != null) params = params.set('minPrice', filters.minPrice.toString());
   if (filters.maxPrice != null) params = params.set('maxPrice', filters.maxPrice.toString());
 
-  return this.http.get<Book[]>(`https://localhost:44309/api/books/filter`, { params });
+  return this.http.get<Book[]>(`https://localhost:7231/api/books/filter`, { params });
 }
 
 

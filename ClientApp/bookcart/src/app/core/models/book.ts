@@ -4,7 +4,6 @@ export interface Book {
   imageUrl: string;
   description: string;
   author: string;
-  publisher: string;
   price: number;
   category: string;       
   format: string;         

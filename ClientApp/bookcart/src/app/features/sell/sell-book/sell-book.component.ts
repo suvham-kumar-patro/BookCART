@@ -31,7 +31,6 @@ export class SellBookComponent {
   this.bookForm = this.fb.group({
   title: ['', Validators.required],
   author: ['', Validators.required],
-  publisher: ['', Validators.required],      
   language: ['', Validators.required],
   format: ['Paperback', Validators.required],
   condition: ['', Validators.required],
@@ -69,6 +68,12 @@ export class SellBookComponent {
   }
 
 submit() {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    this.toastr.warning('Please login to sell a book', 'Unauthorized');
+    return;
+  }
+
   const finalCategory = this.isOtherCategory
     ? this.bookForm.value.customCategory
     : this.bookForm.value.category;
@@ -83,7 +88,6 @@ submit() {
   formData.append('PublicationYear', this.bookForm.value.publicationYear.toString());
   formData.append('Price', this.bookForm.value.price.toString());
   formData.append('Description', this.bookForm.value.description);
-  formData.append('Publisher', this.bookForm.value.publisher);
   formData.append('Stream', this.bookForm.value.stream);
   formData.append('Exam', this.bookForm.value.exam);
   formData.append('Subject', this.bookForm.value.subject);

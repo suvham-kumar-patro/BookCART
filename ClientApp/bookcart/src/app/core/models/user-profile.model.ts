@@ -3,7 +3,6 @@ export interface BookDto {
   imageUrl: string;
   description: string;
   author: string;
-  publisher: string;
   category: string;
   stream: string;
   exam: string;

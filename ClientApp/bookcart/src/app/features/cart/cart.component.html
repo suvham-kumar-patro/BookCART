@@ -2,7 +2,7 @@
   <h2>Your Cart</h2>
 
   <div *ngFor="let item of cartItems" class="cart-item">
-    <img [src]="item.book.imageUrl" alt="{{ item.book.title }}" class="book-img" />
+    <img [src]="'https://localhost:7231' + item.book.imageUrl" alt="{{ item.book.title }}" class="book-img"/>
     <div class="details">
       <h4>{{ item.book.title }}</h4>
       <p><strong>Author:</strong> {{ item.book.author }}</p>

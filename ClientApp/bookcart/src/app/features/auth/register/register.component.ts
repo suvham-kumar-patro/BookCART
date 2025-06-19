@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent {
   username = '';
+  email = '';
   password = '';
   phoneNumber = '';
   error = '';
@@ -23,6 +24,7 @@ export class RegisterComponent {
   register() {
     const user = {
       username: this.username,
+      email: this.email,
       password: this.password,
       phoneNumber: this.phoneNumber
     };
@@ -30,7 +32,7 @@ export class RegisterComponent {
     this.authService.register(user).subscribe({
     next: (res) => {
       console.log('Registration response:', res);
-      this.toastr.success('Registration successful!', 'Please login');
+      this.toastr.success('Registration successful!', 'Please confirm your email.');
       this.router.navigate(['/login']);
     },
     error: (err) => {

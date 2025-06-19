@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { CartService } from '../../../core/services/cart.service';
 import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -22,7 +23,8 @@ export class BookDetailComponent implements OnInit {
     private cartService: CartService,
     private bookService: BookService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +36,11 @@ export class BookDetailComponent implements OnInit {
   }
 
   addToCart(): void {
+    if (!this.authService.isLoggedIn()) {
+    this.toastr.warning('Please login to add books to your cart.', 'Login Required');
+    return;
+  }
+
   if (this.book) {
     this.cartService.addToCart(this.book);
     this.toastr.success(`"${this.book.title}" added to cart!`, 'Added to Cart');

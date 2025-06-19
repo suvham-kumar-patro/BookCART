@@ -8,12 +8,11 @@ import { CartItemDto } from '../models/cart-item.dto';
   providedIn: 'root'
 })
 export class AdminService {
-  private adminApi = 'https://localhost:44309/api/admin';
-  private cartApi = 'https://localhost:44309/api/cart';
+  private adminApi = 'https://localhost:7231/api/admin';
+  private cartApi = 'https://localhost:7231/api/cart';
 
   constructor(private http: HttpClient) {}
 
-  // Existing admin endpoints
   getPendingBooks(): Observable<any[]> {
     return this.http.get<any[]>(`${this.adminApi}/pending`);
   }

@@ -17,7 +17,7 @@ export class CartService {
   private cartItems = new BehaviorSubject<CartItem[]>([]);
   cart$ = this.cartItems.asObservable();
 
-  private readonly apiUrl = 'https://localhost:44309/api/Cart';
+  private readonly apiUrl = 'https://localhost:7231/api/Cart';
 
   constructor(private http: HttpClient) {}
 
@@ -39,8 +39,7 @@ export class CartService {
         imageUrl: item.imageUrl,
         price: item.price,
         description: item.description || '',
-        author: item.author || '',
-        publisher: item.publisher || '',
+        author: item.author,
         category: item.category || '',
         format: item.format || '',
         language: item.language || '',
@@ -123,7 +122,7 @@ clearCart() {
   );
 
   placeOrder(): Observable<any> {
-    return this.http.post('https://localhost:44309/api/Orders/place', {}, { headers: this.getAuthHeaders() }).pipe(
+    return this.http.post('https://localhost:7231/api/Orders/place', {}, { headers: this.getAuthHeaders() }).pipe(
       tap(() => this.clearCart())
     );
   }

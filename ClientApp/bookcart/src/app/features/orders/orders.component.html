@@ -15,7 +15,7 @@
 
     <div class="order-items">
       <div class="item" *ngFor="let item of order.orderItems">
-        <img [src]="item.book.imageUrl" alt="{{ item.book.title }}" />
+        <img [src]="'https://localhost:7231' + item.book.imageUrl" alt="{{ item.book.title }}" />
         <div class="details">
           <h5>{{ item.book.title }}</h5>
           <p>₹{{ item.book.price }} x {{ item.quantity }}</p>

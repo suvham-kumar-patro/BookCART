@@ -13,7 +13,7 @@ interface DecodedToken extends JwtPayload {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:44309/api/Auth';
+  private apiUrl = 'https://localhost:7231/api/Auth';
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasValidToken());
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
@@ -59,7 +59,7 @@ export class AuthService {
     const payload = this.getDecodedToken();
     if (!payload?.exp) return false;
 
-    return (payload.exp * 1000) > Date.now(); // exp is in seconds
+    return (payload.exp * 1000) > Date.now(); 
   }
 
   getDecodedToken(): DecodedToken | null {
@@ -109,7 +109,7 @@ export class AuthService {
 
 
 
-//   private apiUrl = 'https://localhost:44309/api/Auth';
+//   private apiUrl = 'https://localhost:7231/api/Auth';
 
 //   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasValidToken());
 //   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
@@ -194,7 +194,7 @@ export class AuthService {
 //   providedIn: 'root'
 // })
 // export class AuthService {
-//   private apiUrl = 'https://localhost:44309/api/Auth';
+//   private apiUrl = 'https://localhost:7231/api/Auth';
 
 //   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
 //   public isLoggedIn$ = this.isLoggedInSubject.asObservable();

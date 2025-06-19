@@ -4,7 +4,6 @@ export interface BookFilter {
   exam?: string;
   subject?: string;
   author?: string;
-  publisher?: string;
   language?: string;
   condition?: string;
   format?: string;
