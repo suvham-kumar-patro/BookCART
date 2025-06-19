@@ -69,7 +69,8 @@ namespace BookCARTWebApi.Controllers
                 Title = item.Book?.Title,
                 ImageUrl = item.Book?.ImageUrl,
                 Price = item.Price,
-                Quantity = item.Quantity
+                Quantity = item.Quantity,
+                Author  = item.Book?.Author
             });
 
             return Ok(dtoItems);
@@ -96,7 +97,8 @@ namespace BookCARTWebApi.Controllers
                 Title = item.Book?.Title ?? "Unknown",
                 ImageUrl = item.Book?.ImageUrl ?? string.Empty,
                 Price = item.Price,
-                Quantity = item.Quantity
+                Quantity = item.Quantity,
+                Author = item.Book?.Author ?? "Unknown"
             }).ToList();
 
             return Ok(dtoItems);
@@ -117,7 +119,8 @@ namespace BookCARTWebApi.Controllers
                 Title = item.Book?.Title,
                 ImageUrl = item.Book?.ImageUrl,
                 Price = item.Price,
-                Quantity = item.Quantity
+                Quantity = item.Quantity,
+                Author = item.Book?.Author
             });
 
             return Ok(dtoItems);

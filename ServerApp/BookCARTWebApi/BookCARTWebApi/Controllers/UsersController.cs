@@ -51,7 +51,6 @@ namespace BookCARTWebApi.Controllers
                     ImageUrl = b.ImageUrl,
                     Description = b.Description,
                     Author = b.Author,
-                    Publisher = b.Publisher,
                     Category = b.Category,
                     Stream = b.Stream,
                     Exam = b.Exam,

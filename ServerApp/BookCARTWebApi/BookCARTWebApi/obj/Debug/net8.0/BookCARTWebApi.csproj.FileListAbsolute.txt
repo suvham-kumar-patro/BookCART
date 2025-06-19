@@ -137,3 +137,8 @@ C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\Boo
 C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\obj\Debug\net8.0\BookCARTWebApi.genruntimeconfig.cache
 C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\obj\Debug\net8.0\ref\BookCARTWebApi.dll
 C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\bin\Debug\net8.0\BookCARTWebApi.staticwebassets.runtime.json
+C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\bin\Debug\net8.0\MailKit.dll
+C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\bin\Debug\net8.0\MimeKit.dll
+C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\suvham.patro\OneDrive - ascendion\BookCART\ServerApp\BookCARTWebApi\BookCARTWebApi\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll

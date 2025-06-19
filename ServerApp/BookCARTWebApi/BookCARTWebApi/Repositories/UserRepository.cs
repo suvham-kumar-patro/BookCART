@@ -27,6 +27,7 @@ namespace BookCARTWebApi.Repositories
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+
         }
 
         async Task<bool> IUserRepository.UserExistsAsync(string username)

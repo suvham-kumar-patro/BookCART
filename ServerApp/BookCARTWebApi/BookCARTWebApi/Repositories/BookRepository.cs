@@ -96,28 +96,6 @@ namespace BookCARTWebApi.Repositories
             await _context.SaveChangesAsync();
         }
 
-
-
-
-        //public async Task UpdateBookAsync(int id, BookUpdateDto dto)
-        //{
-        //    var existingBook = await _context.Books.FindAsync(id);
-        //    if (existingBook == null) return;
-
-        //    existingBook.Title = dto.Title;
-        //    existingBook.Author = dto.Author;
-        //    existingBook.Description = dto.Description;
-        //    existingBook.Category = dto.Category;
-        //    existingBook.Language = dto.Language;
-        //    existingBook.Format = dto.Format;
-        //    existingBook.Price = dto.Price;
-        //    existingBook.Condition = dto.Condition;
-        //    existingBook.PublicationYear = dto.PublicationYear;
-        //    existingBook.IsApproved = dto.IsApproved;
-
-        //    await _context.SaveChangesAsync();
-        //}
-
         public async Task DeleteBookAsync(int id)
         {
             var book = await _context.Books.FindAsync(id);
@@ -139,53 +117,6 @@ namespace BookCARTWebApi.Repositories
         {
             _context.Books.Update(book);
         }
-
-        //public async Task<List<BookWithUserDto>> FilterBooksAsync(string? search, string? category, decimal? minPrice, decimal? maxPrice, string? format)
-        //{
-        //    var query = _context.Books
-        //        .Include(b => b.User)
-        //        .Where(b => b.IsApproved)
-        //        .AsQueryable();
-
-        //    if (!string.IsNullOrWhiteSpace(search))
-        //        query = query.Where(b => b.Title.Contains(search) || b.Author.Contains(search));
-
-        //    if (!string.IsNullOrWhiteSpace(category))
-        //    {
-        //        string loweredCategory = category.ToLower();
-        //        query = query.Where(b => b.Category.ToLower() == loweredCategory);
-        //    }
-
-        //if (!string.IsNullOrWhiteSpace(category))
-        //    query = query.Where(b => b.Category == category);
-
-        //    if (minPrice.HasValue)
-        //        query = query.Where(b => b.Price >= (double)minPrice.Value);
-
-        //    if (maxPrice.HasValue)
-        //        query = query.Where(b => b.Price <= (double)maxPrice.Value);
-
-        //    if (!string.IsNullOrWhiteSpace(format))
-        //        query = query.Where(b => b.Format == format);
-
-        //    return await query.Select(b => new BookWithUserDto
-        //    {
-        //        Id = b.Id,
-        //        Title = b.Title,
-        //        Author = b.Author,
-        //        Description = b.Description,
-        //        Category = b.Category,
-        //        Language = b.Language,
-        //        Format = b.Format,
-        //        Price = b.Price,
-        //        ImageUrl = b.ImageUrl,
-        //        Condition = b.Condition,
-        //        PublicationYear = b.PublicationYear,
-        //        IsApproved = b.IsApproved,
-        //        UserName = b.User.Username,
-        //        PhoneNumber = b.User.PhoneNumber
-        //    }).ToListAsync();
-        //}
 
     public async Task<List<BookWithUserDto>> FilterBooksAsync(
         string? search,

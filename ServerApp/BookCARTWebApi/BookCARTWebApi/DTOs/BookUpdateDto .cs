@@ -13,8 +13,6 @@
         public string? Format { get; set; }
         public double? Price { get; set; }
         public IFormFile? Image { get; set; }
-
-        //public string? ImageUrl { get; set; }
         public string? Condition { get; set; }
         public int? PublicationYear { get; set; }
         public bool? IsApproved { get; set; }

@@ -103,35 +103,6 @@ namespace BookCARTWebApi.Controllers
             return Ok(new { message = "Book submitted for approval" });
         }
 
-        //[HttpPost("sell")]
-        //[Authorize]
-        //public async Task<IActionResult> SellBook(BookDto dto)
-        //{
-        //    var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-        //    var book = new Book
-        //    {
-        //        Title = dto.Title,
-        //        Author = dto.Author,
-        //        Publisher = dto.Publisher,
-        //        Description = dto.Description,
-        //        Price = dto.Price,
-        //        ImageUrl = dto.ImageUrl,
-        //        Category = dto.Category,
-        //        Stream = dto.Stream,
-        //        Exam = dto.Exam,
-        //        Subject = dto.Subject,
-        //        Language = dto.Language,
-        //        Format = dto.Format,
-        //        Condition = dto.Condition,
-        //        PublicationYear = dto.PublicationYear,
-        //        IsApproved = false,
-        //        UserId = userId
-        //    };
-        //    await _bookRepo.AddAsync(book);
-        //    await _bookRepo.SaveAsync();
-        //    return Ok("Book submitted for approval");
-        //}
-
         [HttpGet("filter")]
         public async Task<IActionResult> FilterBooks(
             [FromQuery] string? search,
@@ -178,26 +149,6 @@ namespace BookCARTWebApi.Controllers
                 existingBook.ImageUrl = "/uploads/" + uniqueFileName;
             }
 
-
-            //if (dto.Image != null && dto.Image.Length > 0)
-            //{
-            //    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-            //    if (!Directory.Exists(uploadsFolder))
-            //        Directory.CreateDirectory(uploadsFolder);
-
-            //    var uniqueFileName = Guid.NewGuid() + Path.GetExtension(dto.Image.FileName);
-            //    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-            //    using var stream = new FileStream(filePath, FileMode.Create);
-            //    await dto.Image.CopyToAsync(stream);
-
-            //    existingBook.ImageUrl = "/uploads/" + uniqueFileName;
-            //}
-            //else if (!string.IsNullOrEmpty(dto.ImageUrl))
-            //{
-            //    existingBook.ImageUrl = dto.ImageUrl;
-            //}
-
             // Conditionally update fields
             if (!string.IsNullOrEmpty(dto.Title)) existingBook.Title = dto.Title;
             if (!string.IsNullOrEmpty(dto.Author)) existingBook.Author = dto.Author;
@@ -217,93 +168,6 @@ namespace BookCARTWebApi.Controllers
 
             return Ok(new { message = "Book updated successfully." });
         }
-
-
-
-
-        //[HttpPut("{id}")]
-        //[Authorize]
-        //public async Task<IActionResult> UpdateBook(int id, [FromForm] BookUploadDto dto)
-        //{
-        //    var existingBook = await _bookRepo.GetBookByIdAsync(id);
-        //    if (existingBook == null)
-        //        return NotFound("Book not found.");
-
-        //    var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-        //    var userRole = User.FindFirstValue(ClaimTypes.Role); // or use "role" if that's what you're using
-
-        //    // 🛡️ Only block non-admins from editing other users' books
-        //    if (userRole != "Admin" && existingBook.UserId != userId)
-        //        return Forbid("You are not authorized to update this book.");
-
-        //    // ✅ Handle image upload
-        //    if (dto.Image != null && dto.Image.Length > 0)
-        //    {
-        //        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-        //        if (!Directory.Exists(uploadsFolder))
-        //            Directory.CreateDirectory(uploadsFolder);
-
-        //        var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.Image.FileName);
-        //        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-        //        using (var stream = new FileStream(filePath, FileMode.Create))
-        //        {
-        //            await dto.Image.CopyToAsync(stream);
-        //        }
-
-        //        existingBook.ImageUrl = "/uploads/" + uniqueFileName;
-        //    }
-
-        //    if (!string.IsNullOrEmpty(dto.Title)) book.Title = dto.Title;
-        //    if (!string.IsNullOrEmpty(dto.Author)) book.Author = dto.Author;
-        //    if (!string.IsNullOrEmpty(dto.Publisher)) book.Publisher = dto.Publisher;
-        //    if (!string.IsNullOrEmpty(dto.Description)) book.Description = dto.Description;
-        //    if (!string.IsNullOrEmpty(dto.Category)) book.Category = dto.Category;
-        //    if (!string.IsNullOrEmpty(dto.Stream)) book.Stream = dto.Stream;
-        //    if (!string.IsNullOrEmpty(dto.Exam)) book.Exam = dto.Exam;
-        //    if (!string.IsNullOrEmpty(dto.Subject)) book.Subject = dto.Subject;
-        //    if (!string.IsNullOrEmpty(dto.Language)) book.Language = dto.Language;
-        //    if (!string.IsNullOrEmpty(dto.Format)) book.Format = dto.Format;
-        //    if (!string.IsNullOrEmpty(dto.Condition)) book.Condition = dto.Condition;
-        //    if (!string.IsNullOrEmpty(dto.ImageUrl)) book.ImageUrl = dto.ImageUrl;
-
-        //    if (dto.PublicationYear.HasValue) book.PublicationYear = dto.PublicationYear.Value;
-        //    if (dto.Price.HasValue) book.Price = dto.Price.Value;
-        //    if (dto.IsApproved.HasValue) book.IsApproved = dto.IsApproved.Value;
-
-        //    await _bookRepo.SaveAsync();
-
-        // ✏️ Update other fields
-        //existingBook.Title = dto.Title;
-        //existingBook.Description = dto.Description;
-        //existingBook.Author = dto.Author;
-        //existingBook.Publisher = dto.Publisher;
-        //existingBook.Category = dto.Category;
-        //existingBook.Stream = dto.Stream;
-        //existingBook.Exam = dto.Exam;
-        //existingBook.Subject = dto.Subject;
-        //existingBook.Language = dto.Language;
-        //existingBook.Format = dto.Format;
-        //existingBook.Condition = dto.Condition;
-        //existingBook.PublicationYear = dto.PublicationYear;
-        //existingBook.Price = dto.Price;
-
-        //    await _bookRepo.SaveAsync();
-
-        //    return Ok(new { message = "Book updated successfully." });
-        //}
-
-
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> UpdateBook(int id, [FromBody] BookUpdateDto dto)
-        //{
-        //    var existingBook = await _bookRepo.GetBookByIdAsync(id);
-        //    if (existingBook == null)
-        //        return NotFound("Book not found.");
-
-        //    await _bookRepo.UpdateBookAsync(id, dto);
-        //    return Ok(new { message = "Book updated successfully." });
-        //}
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
