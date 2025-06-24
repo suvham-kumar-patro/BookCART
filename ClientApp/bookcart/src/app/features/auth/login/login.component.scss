@@ -2,10 +2,10 @@
   max-width: 420px;
   margin: 3rem auto;
   padding: 2.5rem;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2); // fresh gradient (white-blue-violet)
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  color: #1a237e; // deep blue text
+  color: #1a237e;
 
   form {
     display: flex;
@@ -47,9 +47,32 @@
       }
     }
 
+    .password-wrapper {
+      position: relative;
+
+      input {
+        padding-right: 9rem;
+      }
+
+      i.bi {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #3949ab;
+        font-size: 1.1rem;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #1a237e;
+        }
+      }
+    }
+
     button {
       padding: 0.8rem;
-      background-color: #3949ab; // strong blue
+      background-color: #3949ab;
       color: white;
       font-weight: 700;
       border: none;
@@ -58,7 +81,7 @@
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: #1a237e; // darker blue
+        background-color: #1a237e;
       }
 
       &:disabled {

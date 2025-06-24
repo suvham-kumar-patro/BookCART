@@ -54,6 +54,28 @@
       }
     }
 
+    .password-wrapper {
+      position: relative;
+  
+      input {
+        padding-right: 9rem;
+      }
+  
+      i {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #1976d2;
+        font-size: 1.1rem;
+  
+        &:hover {
+          color: #0d47a1;
+        }
+      }
+    }
+
     button {
       padding: 0.8rem;
       background-color: #1976d2;

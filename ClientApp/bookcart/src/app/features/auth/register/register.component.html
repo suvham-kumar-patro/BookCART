@@ -52,15 +52,22 @@
 
     <div class="form-group">
       <label for="password">Password</label>
+      <div class="password-wrapper">
       <input
-        type="password"
+        [type]="showPassword ? 'text' : 'password'"
         id="password"
         name="password"
         [(ngModel)]="password"
         #passwordRef="ngModel"
         required
-        placeholder="Enter your password"
       />
+      <i
+      class="bi"
+      [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"
+      (click)="togglePasswordVisibility()"
+      title="Show/Hide Password"
+      ></i>
+      </div>
       <div class="error" *ngIf="passwordRef.touched && passwordRef.invalid">
         Password is required.
       </div>

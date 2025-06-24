@@ -18,8 +18,13 @@ export class RegisterComponent {
   password = '';
   phoneNumber = '';
   error = '';
+  showPassword = false;
 
   constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
+
+   togglePasswordVisibility() {
+  this.showPassword = !this.showPassword;
+}
 
   register() {
     const user = {
