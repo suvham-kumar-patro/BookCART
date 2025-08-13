@@ -11,6 +11,8 @@ import { OrdersComponent } from './features/orders/orders.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,5 +25,7 @@ export const routes: Routes = [
   { path: 'admin', canActivate: [AuthGuard], data: { requiresAdmin: true }, component: AdminDashboardComponent },
   { path: 'orders', component: OrdersComponent},
   { path: 'profile', component: UserProfileComponent},
-  { path: 'unauthorized', component: UnauthorizedComponent }
+  { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent}
 ];

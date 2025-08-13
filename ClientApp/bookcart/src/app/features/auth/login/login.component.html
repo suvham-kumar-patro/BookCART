@@ -37,6 +37,9 @@
       <div class="error" *ngIf="passwordRef.touched && passwordRef.invalid">
         Password is required.
       </div>
+      <div class="forgot-password">
+        <a routerLink="/forgot-password">Forgot Password?</a>
+      </div>
     </div>
 
     <div class="error" *ngIf="error">{{ error }}</div>

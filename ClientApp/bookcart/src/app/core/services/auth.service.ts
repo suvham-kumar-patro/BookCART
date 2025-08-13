@@ -96,158 +96,16 @@ export class AuthService {
     const payload = this.getDecodedToken();
     return payload?.username ?? null;
   }
+
+  forgotPassword(email: string, options?: any) {
+  return this.http.post(
+    `${this.apiUrl}/forgot-password`,
+    { email },
+    options || {}
+  );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-//   private apiUrl = 'https://localhost:7231/api/Auth';
-
-//   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasValidToken());
-//   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
-
-//   constructor(private http: HttpClient) {}
-
-//   login(credentials: { username: string; password: string }): Observable<{ token: string }> {
-//     return new Observable(observer => {
-//       this.http.post<{ token: string }>(`${this.apiUrl}/login`, credentials).subscribe({
-//         next: (res) => {
-//           localStorage.setItem('token', res.token);
-//           this.isLoggedInSubject.next(true);
-//           observer.next(res);
-//           observer.complete();
-//         },
-//         error: (err) => observer.error(err)
-//       });
-//     });
-//   }
-
-//   register(user: { username: string; password: string; phoneNumber: string }): Observable<any> {
-//     return this.http.post(`${this.apiUrl}/register`, user);
-//   }
-
-//   logout(): void {
-//     localStorage.removeItem('token');
-//     this.isLoggedInSubject.next(false);
-//   }
-
-//   getToken(): string | null {
-//     return localStorage.getItem('token');
-//   }
-
-//   isLoggedIn(): boolean {
-//     return this.hasValidToken();
-//   }
-
-//   private hasValidToken(): boolean {
-//     const token = this.getToken();
-//     if (!token) return false;
-
-//     const payload = this.getDecodedToken();
-//     if (!payload || !payload.exp) return false;
-
-//     const isExpired = (payload.exp * 1000) < Date.now(); // JWT exp is in seconds
-//     return !isExpired;
-//   }
-
-//   isAdmin(): boolean {
-//     const payload = this.getDecodedToken();
-//     return payload?.role === 'admin';
-//   }
-
-//   getDecodedToken(): any {
-//     const token = this.getToken();
-//     if (!token) return null;
-
-//     try {
-//       return jwtDecode(token);
-//     } catch (error) {
-//       console.error('Invalid token', error);
-//       return null;
-//     }
-//   }
-// }
-
-
-
-
-
-
-
-
-
-
-
-// import { HttpClient } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { BehaviorSubject, Observable } from 'rxjs';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class AuthService {
-//   private apiUrl = 'https://localhost:7231/api/Auth';
-
-//   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
-//   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
-
-//   constructor(private http: HttpClient) {}
-
-//   login(credentials: { username: string; password: string }): Observable<{ token: string }> {
-//     return new Observable(observer => {
-//       this.http.post<{ token: string }>(`${this.apiUrl}/login`, credentials).subscribe({
-//         next: (res) => {
-//           localStorage.setItem('token', res.token);
-//           this.isLoggedInSubject.next(true); 
-//           observer.next(res);
-//           observer.complete();
-//         },
-//         error: (err) => observer.error(err)
-//       });
-//     });
-//   }
-
-//   register(user: { username: string; password: string; phoneNumber: string }): Observable<any> {
-//     return this.http.post(`${this.apiUrl}/register`, user);
-//   }
-
-//   logout(): void {
-//     localStorage.removeItem('token');
-//     this.isLoggedInSubject.next(false); // ✅ notify logout
-//   }
-
-//   getToken(): string | null {
-//     return localStorage.getItem('token');
-//   }
-
-//   isLoggedIn(): boolean {
-//     return !!this.getToken();
-//   }
-
-//   private hasToken(): boolean {
-//     return !!localStorage.getItem('token');
-//   }
-
-//   isAdmin(): boolean {
-//     const payload = this.getDecodedToken();
-//     return payload?.role === 'admin';
-//   }
-
-//   getDecodedToken(): any {
-//     const token = this.getToken();
-//     if (!token) return null;
-//     try {
-//       return JSON.parse(atob(token.split('.')[1]));
-//     } catch {
-//       return null;
-//     }
-//   }
-// }
+resetPassword(data: { userId: number, token: string, newPassword: string }) {
+  return this.http.post(`${this.apiUrl}/reset-password`, data);
+}
+}
