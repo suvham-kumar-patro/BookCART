@@ -8,5 +8,6 @@ namespace BookCARTWebApi.Repositories
         Task<User?> GetByIdAsync(int id);
         Task<bool> UserExistsAsync(string username);
         Task AddUserAsync(User user);
+        Task<User?> GetByEmailAsync(string email);
     }
 }

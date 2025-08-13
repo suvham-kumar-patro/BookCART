@@ -3,6 +3,7 @@ using BookCARTWebApi.DTOs;
 using BookCARTWebApi.Models;
 using BookCARTWebApi.Repositories;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -22,7 +23,7 @@ namespace BookCARTWebApi.Controllers
         private readonly IEmailRepo _emailRepo;
         private readonly AppDbContext _context;
 
-        public AuthController(IUserRepository userRepo, IConfiguration config,IEmailRepo emailRepo, AppDbContext context)
+        public AuthController(IUserRepository userRepo, IConfiguration config, IEmailRepo emailRepo, AppDbContext context)
         {
             _userRepo = userRepo;
             _config = config;
@@ -42,6 +43,7 @@ namespace BookCARTWebApi.Controllers
             var user = new User
             {
                 Username = dto.Username,
+                Email = dto.Email,
                 PhoneNumber = dto.PhoneNumber,
                 Role = "User",
                 EmailConfirmed = false,
@@ -162,5 +164,49 @@ namespace BookCARTWebApi.Controllers
 
             return Ok("Email confirmed successfully.");
         }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Email))
+                return BadRequest("Email is required.");
+
+            var user = await _userRepo.GetByEmailAsync(request.Email);
+
+            if (user != null)
+            {
+                user.PasswordResetToken = Guid.NewGuid();
+                user.ResetTokenExpires = DateTime.UtcNow.AddMinutes(50);
+
+                await _context.SaveChangesAsync();
+
+                var resetLink = $"http://localhost:4200/reset-password?userId={user.Id}&token={user.PasswordResetToken}";
+
+                await _emailRepo.SendEmailAsync(user.Email, "Password Reset Request",
+                    $"<p>Click <a href='{resetLink}'>here</a> to reset your password. This link will expire in 15 minutes.</p>");
+            }
+
+            return Ok(new { message = "If an account with that email exists, a reset link has been sent." });
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequestDto request)
+        {
+            var user = await _userRepo.GetByIdAsync(request.UserId);
+            if (user == null)
+                return NotFound("User not found.");
+
+            if (user.PasswordResetToken != request.Token || user.ResetTokenExpires < DateTime.UtcNow)
+                return BadRequest("Invalid or expired token.");
+
+            user.PasswordHash = _hasher.HashPassword(user, request.NewPassword);
+            user.PasswordResetToken = null;
+            user.ResetTokenExpires = null;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Password has been reset successfully." });
+        }
     }
+
 }

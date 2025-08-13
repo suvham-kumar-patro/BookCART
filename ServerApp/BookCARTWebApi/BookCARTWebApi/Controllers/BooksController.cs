@@ -59,7 +59,7 @@ namespace BookCARTWebApi.Controllers
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
-            string imageUrl = string.Empty;
+            string imageUrl = string.Empty; 
 
             if (dto.Image != null)
             {

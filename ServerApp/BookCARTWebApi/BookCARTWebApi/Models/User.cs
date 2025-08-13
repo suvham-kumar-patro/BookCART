@@ -10,6 +10,8 @@
         public string Role { get; set; } = "User";
         public Guid ConfirmationToken { get; set; } 
         public bool EmailConfirmed { get; set; } = false;
+        public Guid? PasswordResetToken { get; set; }
+        public DateTime? ResetTokenExpires { get; set; }
         public List<Book>? Books { get; set; }
         public List<Order>? Orders { get; set; }
     }
