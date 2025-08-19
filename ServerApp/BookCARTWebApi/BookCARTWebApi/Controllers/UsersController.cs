@@ -44,6 +44,7 @@ namespace BookCARTWebApi.Controllers
             {
                 Username = user.Username,
                 PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
                 ListedBooks = listedBooks.Select(b => new BookDto
                 {
                     Id = b.Id,

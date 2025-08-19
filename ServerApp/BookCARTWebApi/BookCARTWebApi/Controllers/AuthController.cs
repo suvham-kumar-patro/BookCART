@@ -64,43 +64,6 @@ namespace BookCARTWebApi.Controllers
             return Ok(new { message = "User registered successfully. Please confirm your email." });
         }
 
-        //[HttpPost("register")]
-        //public async Task<IActionResult> Register(RegisterDto dto)
-        //{
-        //    if (await _userRepo.UserExistsAsync(dto.Username))
-        //        return BadRequest("Username already exists.");
-
-        //    var user = new User
-        //    {
-        //        Username = dto.Username,
-        //        PhoneNumber = dto.PhoneNumber,
-        //        Role = "User",
-        //        EmailConfirmed = false
-        //    };
-
-        //    user.PasswordHash = _hasher.HashPassword(user, dto.Password);
-        //    await _userRepo.AddUserAsync(user);
-
-
-
-        //    return Ok(new { message = "User registered successfully." });
-        //}
-
-        //[HttpPost("login")]
-        //public async Task<IActionResult> Login(LoginDto dto)
-        //{
-        //    var user = await _userRepo.GetByUsernameAsync(dto.Username);
-        //    if (user == null)
-        //        return Unauthorized("Invalid username or password.");
-
-        //    var result = _hasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
-        //    if (result != PasswordVerificationResult.Success)
-        //        return Unauthorized("Invalid username or password.");
-
-        //    var token = GenerateJwtToken(user);
-        //    return Ok(new { token });
-        //}
-
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
@@ -176,7 +139,7 @@ namespace BookCARTWebApi.Controllers
             if (user != null)
             {
                 user.PasswordResetToken = Guid.NewGuid();
-                user.ResetTokenExpires = DateTime.UtcNow.AddMinutes(50);
+                user.ResetTokenExpires = DateTime.UtcNow.AddMinutes(15);
 
                 await _context.SaveChangesAsync();
 
