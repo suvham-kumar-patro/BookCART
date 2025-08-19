@@ -1,4 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+/* Import Angular Material theming API */
+@use '@angular/material' as mat;
+
+/* ✅ Define Material v19 (MDC v2) palettes */
+$primary: mat.m2-define-palette(mat.$m2-indigo-palette, 600);
+$accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
+$warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+/* ✅ Create the theme */
+$theme: mat.m2-define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+  )
+));
+
+/* ✅ Apply the theme */
+@include mat.all-component-themes($theme);
+
+/* 🔹 Your custom global styles */
 .toast-top-center {
   top: 20px !important;
   right: 50% !important;
@@ -13,3 +33,27 @@
   bottom: auto !important;
 }
 
+
+// Small devices
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1rem;
+  }
+  .card-title {
+    font-size: 0.9rem;
+  }
+}
+
+// Tablets
+@media (min-width: 577px) and (max-width: 991px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+}
+
+// Large screens
+@media (min-width: 992px) {
+  .container {
+    max-width: 1200px;
+  }
+}

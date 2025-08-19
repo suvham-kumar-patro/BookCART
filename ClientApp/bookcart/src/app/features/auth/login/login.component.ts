@@ -41,6 +41,8 @@ export class LoginComponent {
         const role = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
         console.log(role);
         
+        this.password = '';
+        this.username = '';
 
         if (role === 'Admin') {
           this.router.navigate(['/admin']);

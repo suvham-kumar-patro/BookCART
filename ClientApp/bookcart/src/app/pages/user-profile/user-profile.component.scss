@@ -3,17 +3,35 @@
   padding: 2rem;
   background: #f9f9f9;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
 }
 
 .container {
   max-width: 960px;
   margin: auto;
+  padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 }
 
 h2 {
   color: #34495e;
   margin-bottom: 1.5rem;
   font-weight: 700;
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    text-align: center;
+  }
 }
 
 .card {
@@ -31,12 +49,20 @@ h2 {
   h4 {
     color: #2c3e50;
     margin-bottom: 1rem;
+
+    @media (max-width: 480px) {
+      font-size: 1.1rem;
+    }
   }
 
   p {
     margin: 0.3rem 0;
     font-size: 1rem;
     color: #555;
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+    }
   }
 
   ul {
@@ -46,6 +72,10 @@ h2 {
       margin-bottom: 0.5rem;
       font-size: 0.95rem;
       color: #444;
+
+      @media (max-width: 480px) {
+        font-size: 0.85rem;
+      }
     }
   }
 }
@@ -56,6 +86,12 @@ input.form-control {
   padding: 0.5rem;
   font-size: 1rem;
   max-width: 300px;
+  width: 100%;
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+    font-size: 0.9rem;
+  }
 }
 
 button {
@@ -93,5 +129,10 @@ button {
     &:hover {
       background-color: #5a6268;
     }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
   }
 }

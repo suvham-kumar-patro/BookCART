@@ -16,6 +16,7 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     flex: 1 1 180px;
+    min-width: 100px;
   }
 
   input:focus,
@@ -30,6 +31,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Book Card */
@@ -51,12 +60,20 @@
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 1rem;
+
+    @media (max-width: 480px) {
+      height: 200px;
+    }
   }
 
   h3 {
     font-size: 1.1rem;
     margin: 0.5rem 0;
     color: #333;
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
   }
 
   .author {
@@ -108,17 +125,16 @@
         background-color: #218838;
       }
     }
-  }
-}
 
-@media (max-width: 600px) {
-  .filter-bar {
-    flex-direction: column;
-  }
+    @media (max-width: 600px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
 
-  .card-actions {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+      a,
+      button {
+        flex: 1 1 45%;
+      }
+    }
   }
 }

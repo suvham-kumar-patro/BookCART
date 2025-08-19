@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {jwtDecode, JwtPayload } from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
+import { CartService } from './cart.service';
 import { Router } from '@angular/router';
 
 interface DecodedToken extends JwtPayload {
@@ -17,7 +18,7 @@ export class AuthService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasValidToken());
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient, private toastr: ToastrService) {}
+  constructor(private http: HttpClient, private toastr: ToastrService, private router: Router, private cartService: CartService) {}
 
   login(credentials: { username: string; password: string }): Observable<{ token: string }> {
     return new Observable(observer => {
@@ -25,6 +26,7 @@ export class AuthService {
         next: (res) => {
           localStorage.setItem('token', res.token);
           this.isLoggedInSubject.next(true);
+          this.cartService.loadCartFromServer();
           observer.next(res);
           observer.complete();
         },
@@ -40,6 +42,7 @@ export class AuthService {
   }
 
   logout(): void {
+    this.cartService.clearLocalCart();
     localStorage.removeItem('token');
     this.isLoggedInSubject.next(false);
   }

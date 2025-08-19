@@ -107,6 +107,10 @@ removeFromCart(cartItemId: number): Observable<void> {
   );
 }
 
+clearLocalCart() {
+  this.cartItems.next([]);
+}
+
 clearCart() {
   this.http.delete(`${this.apiUrl}/clear`, { headers: this.getAuthHeaders() }).subscribe(() => {
     this.cartItems.next([]);
