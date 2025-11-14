@@ -288,7 +288,47 @@
         "IsRequired": false
       },
       {
-        "Name": "category",
+        "Name": "mainCategory",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "schoolClass",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "board",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "collegeLevel",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "stream",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "course",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "honors",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "medicalCourse",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "othersCategory",
         "Type": "System.String",
         "IsRequired": false
       },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4ct6oqogm766niQxDtNANxleXBLmI5zoxg5QyvWPS5U=",
+  "Hash": "YwjdJ5OuPUsbwOkh0DOZPbeTn8sZqh8Nc+cw4pmeGrM=",
   "Source": "BookCARTWebApi",
   "BasePath": "_content/BookCARTWebApi",
   "Mode": "Default",
@@ -226,6 +226,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\94ac1c04-d151-4afd-9c44-00718a9fd2d0.jpg"
     },
     {
+      "Identity": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\abd01e35-51c0-474f-9ed9-c5c72f6839a5.jpg",
+      "SourceId": "BookCARTWebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\",
+      "BasePath": "_content/BookCARTWebApi",
+      "RelativePath": "uploads/abd01e35-51c0-474f-9ed9-c5c72f6839a5.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\abd01e35-51c0-474f-9ed9-c5c72f6839a5.jpg"
+    },
+    {
       "Identity": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\ac8b20cf-4317-492b-a80e-dcc266ae0d40.jpg",
       "SourceId": "BookCARTWebApi",
       "SourceType": "Discovered",
@@ -283,6 +302,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\b703e6cd-f272-4fbb-966f-746da701db4f.jpeg"
     },
     {
+      "Identity": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\b91aec03-e397-4e48-a600-09225cfea18b.jpg",
+      "SourceId": "BookCARTWebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\",
+      "BasePath": "_content/BookCARTWebApi",
+      "RelativePath": "uploads/b91aec03-e397-4e48-a600-09225cfea18b.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\b91aec03-e397-4e48-a600-09225cfea18b.jpg"
+    },
+    {
       "Identity": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\c7d709fe-de8c-4921-8ab3-f3c90df19652.jpg",
       "SourceId": "BookCARTWebApi",
       "SourceType": "Discovered",
@@ -319,6 +357,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\c9113a4d-823a-43fd-af2e-13bae3cdd69d.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\cc013b57-2d6e-4e8e-9ff2-3a5d79660896.jpg",
+      "SourceId": "BookCARTWebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\",
+      "BasePath": "_content/BookCARTWebApi",
+      "RelativePath": "uploads/cc013b57-2d6e-4e8e-9ff2-3a5d79660896.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\cc013b57-2d6e-4e8e-9ff2-3a5d79660896.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\cc4153d7-ab4f-417f-afee-04a22e77306e.jpg",
+      "SourceId": "BookCARTWebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\",
+      "BasePath": "_content/BookCARTWebApi",
+      "RelativePath": "uploads/cc4153d7-ab4f-417f-afee-04a22e77306e.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\cc4153d7-ab4f-417f-afee-04a22e77306e.jpg"
     },
     {
       "Identity": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\cc88b497-5db0-4a91-9e44-7229b89eca1e.jpg",
@@ -397,6 +473,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\e351838d-8846-46a2-830d-b32c53a8e1a6.jpg"
     },
     {
+      "Identity": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\e6548775-9bc5-41b0-b8a5-45d89f0f4474.jpeg",
+      "SourceId": "BookCARTWebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\",
+      "BasePath": "_content/BookCARTWebApi",
+      "RelativePath": "uploads/e6548775-9bc5-41b0-b8a5-45d89f0f4474.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\e6548775-9bc5-41b0-b8a5-45d89f0f4474.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\e73634b3-046e-42d4-b23e-d749f978bd6b.jpg",
       "SourceId": "BookCARTWebApi",
       "SourceType": "Discovered",
@@ -414,6 +509,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\e73634b3-046e-42d4-b23e-d749f978bd6b.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\uploads\\f0ca6e23-99fd-4b34-80d1-53de7b15aee7.jpg",
+      "SourceId": "BookCARTWebApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\suvham.patro\\OneDrive - ascendion\\BookCART\\ServerApp\\BookCARTWebApi\\BookCARTWebApi\\wwwroot\\",
+      "BasePath": "_content/BookCARTWebApi",
+      "RelativePath": "uploads/f0ca6e23-99fd-4b34-80d1-53de7b15aee7.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\f0ca6e23-99fd-4b34-80d1-53de7b15aee7.jpg"
     }
   ]
 }

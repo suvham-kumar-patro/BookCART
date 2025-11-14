@@ -106,14 +106,40 @@ namespace BookCARTWebApi.Controllers
         [HttpGet("filter")]
         public async Task<IActionResult> FilterBooks(
             [FromQuery] string? search,
-            [FromQuery] string? category,
+            [FromQuery] string? mainCategory,
+            [FromQuery] string? schoolClass,
+            [FromQuery] string? board,
+            [FromQuery] string? collegeLevel,
+            [FromQuery] string? stream,
+            [FromQuery] string? course,
+            [FromQuery] string? honors,
+            [FromQuery] string? medicalCourse,
+            [FromQuery] string? othersCategory,
             [FromQuery] decimal? minPrice,
             [FromQuery] decimal? maxPrice,
             [FromQuery] string? format)
         {
-            var filteredBooks = await _bookRepo.FilterBooksAsync(search, category, minPrice, maxPrice, format);
+            var filteredBooks = await _bookRepo.FilterBooksAsync(
+                search, mainCategory, schoolClass, board,
+                collegeLevel, stream, course, honors,
+                medicalCourse, othersCategory,
+                minPrice, maxPrice, format);
+
             return Ok(filteredBooks);
         }
+
+
+        //[HttpGet("filter")]
+        //public async Task<IActionResult> FilterBooks(
+        //    [FromQuery] string? search,
+        //    [FromQuery] string? category,
+        //    [FromQuery] decimal? minPrice,
+        //    [FromQuery] decimal? maxPrice,
+        //    [FromQuery] string? format)
+        //{
+        //    var filteredBooks = await _bookRepo.FilterBooksAsync(search, category, minPrice, maxPrice, format);
+        //    return Ok(filteredBooks);
+        //}
 
         [HttpPut("{id}")]
         [Authorize]

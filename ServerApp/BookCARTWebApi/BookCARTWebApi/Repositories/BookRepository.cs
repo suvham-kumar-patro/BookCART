@@ -117,19 +117,27 @@ namespace BookCARTWebApi.Repositories
         {
             _context.Books.Update(book);
         }
-
-    public async Task<List<BookWithUserDto>> FilterBooksAsync(
-        string? search,
-        string? category,
-        decimal? minPrice,
-        decimal? maxPrice,
-        string? format)
+        public async Task<List<BookWithUserDto>> FilterBooksAsync(
+            string? search,
+            string? mainCategory,
+            string? schoolClass,
+            string? board,
+            string? collegeLevel,
+            string? stream,
+            string? course,
+            string? honors,
+            string? medicalCourse,
+            string? othersCategory,
+            decimal? minPrice,
+            decimal? maxPrice,
+            string? format)
         {
             var query = _context.Books
                 .Include(b => b.User)
                 .Where(b => b.IsApproved)
                 .AsQueryable();
 
+            // 🔍 Search
             if (!string.IsNullOrWhiteSpace(search))
             {
                 string loweredSearch = search.ToLower();
@@ -138,29 +146,52 @@ namespace BookCARTWebApi.Repositories
                     b.Author.ToLower().Contains(loweredSearch));
             }
 
-            if (!string.IsNullOrWhiteSpace(category))
+            // 📚 Main Category
+            if (!string.IsNullOrWhiteSpace(mainCategory))
             {
-                string loweredCategory = category.Trim().ToLower();
-                query = query.Where(b =>
-                    b.Category != null && b.Category.Trim().ToLower().Contains(loweredCategory));
+                string lowered = mainCategory.ToLower();
+                query = query.Where(b => b.MainCategory != null && b.MainCategory.ToLower() == lowered);
             }
 
+            if (!string.IsNullOrWhiteSpace(schoolClass))
+                query = query.Where(b => b.SchoolClass != null && b.SchoolClass == schoolClass);
+
+            if (!string.IsNullOrWhiteSpace(board))
+                query = query.Where(b => b.Board != null && b.Board == board);
+
+            if (!string.IsNullOrWhiteSpace(collegeLevel))
+                query = query.Where(b => b.CollegeLevel != null && b.CollegeLevel == collegeLevel);
+
+            if (!string.IsNullOrWhiteSpace(stream))
+                query = query.Where(b => b.Stream != null && b.Stream == stream);
+
+            if (!string.IsNullOrWhiteSpace(course))
+                query = query.Where(b => b.Course != null && b.Course == course);
+
+            if (!string.IsNullOrWhiteSpace(honors))
+                query = query.Where(b => b.Honors != null && b.Honors == honors);
+
+            if (!string.IsNullOrWhiteSpace(medicalCourse))
+                query = query.Where(b => b.MedicalCourse != null && b.MedicalCourse == medicalCourse);
+
+            if (!string.IsNullOrWhiteSpace(othersCategory))
+                query = query.Where(b => b.OthersCategory != null && b.OthersCategory == othersCategory);
+
+            // 💰 Price Range
             if (minPrice.HasValue)
-            {
                 query = query.Where(b => b.Price >= (double)minPrice.Value);
-            }
 
             if (maxPrice.HasValue)
-            {
                 query = query.Where(b => b.Price <= (double)maxPrice.Value);
-            }
 
+            // 📖 Format
             if (!string.IsNullOrWhiteSpace(format))
             {
                 string loweredFormat = format.ToLower();
                 query = query.Where(b => b.Format.ToLower() == loweredFormat);
             }
 
+            // ✅ Return DTO
             return await query.Select(b => new BookWithUserDto
             {
                 Id = b.Id,
@@ -179,6 +210,69 @@ namespace BookCARTWebApi.Repositories
                 PhoneNumber = b.User.PhoneNumber
             }).ToListAsync();
         }
+
+
+        //public async Task<List<BookWithUserDto>> FilterBooksAsync(
+        //    string? search,
+        //    string? category,
+        //    decimal? minPrice,
+        //    decimal? maxPrice,
+        //    string? format)
+        //    {
+        //        var query = _context.Books
+        //            .Include(b => b.User)
+        //            .Where(b => b.IsApproved)
+        //            .AsQueryable();
+
+        //        if (!string.IsNullOrWhiteSpace(search))
+        //        {
+        //            string loweredSearch = search.ToLower();
+        //            query = query.Where(b =>
+        //                b.Title.ToLower().Contains(loweredSearch) ||
+        //                b.Author.ToLower().Contains(loweredSearch));
+        //        }
+
+        //        if (!string.IsNullOrWhiteSpace(category))
+        //        {
+        //            string loweredCategory = category.Trim().ToLower();
+        //            query = query.Where(b =>
+        //                b.Category != null && b.Category.Trim().ToLower().Contains(loweredCategory));
+        //        }
+
+        //        if (minPrice.HasValue)
+        //        {
+        //            query = query.Where(b => b.Price >= (double)minPrice.Value);
+        //        }
+
+        //        if (maxPrice.HasValue)
+        //        {
+        //            query = query.Where(b => b.Price <= (double)maxPrice.Value);
+        //        }
+
+        //        if (!string.IsNullOrWhiteSpace(format))
+        //        {
+        //            string loweredFormat = format.ToLower();
+        //            query = query.Where(b => b.Format.ToLower() == loweredFormat);
+        //        }
+
+        //        return await query.Select(b => new BookWithUserDto
+        //        {
+        //            Id = b.Id,
+        //            Title = b.Title,
+        //            Author = b.Author,
+        //            Description = b.Description,
+        //            Category = b.Category,
+        //            Language = b.Language,
+        //            Format = b.Format,
+        //            Price = b.Price,
+        //            ImageUrl = b.ImageUrl,
+        //            Condition = b.Condition,
+        //            PublicationYear = b.PublicationYear,
+        //            IsApproved = b.IsApproved,
+        //            UserName = b.User.Username,
+        //            PhoneNumber = b.User.PhoneNumber
+        //        }).ToListAsync();
+        //    }
 
 
         public async Task SaveAsync()

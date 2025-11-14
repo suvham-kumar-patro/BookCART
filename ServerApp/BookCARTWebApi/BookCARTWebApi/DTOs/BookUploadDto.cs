@@ -9,8 +9,8 @@ namespace BookCARTWebApi.DTOs
         public string Author { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
         public string Stream { get; set; } = string.Empty;
-        public string Exam { get; set; } = string.Empty;
-        public string Subject { get; set; } = string.Empty;
+        public string? Exam { get; set; } = string.Empty;
+        public string? Subject { get; set; } = string.Empty;
         public string Language { get; set; } = string.Empty;
         public string Condition { get; set; } = string.Empty;
         public string Format { get; set; } = string.Empty;
