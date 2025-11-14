@@ -14,30 +14,14 @@
     </div>
 
     <div class="form-group">
-      <input formControlName="stream" placeholder="Stream" />
-      <i class="bi bi-diagram-3"></i>
-    </div>
-
-    <div class="form-group">
-      <input formControlName="exam" placeholder="Exam" />
-      <i class="bi bi-pencil-square"></i>
-    </div>
-
-    <div class="form-group">
-      <input formControlName="subject" placeholder="Subject" />
-      <i class="bi bi-book-half"></i>
-    </div>
-
-    <div class="form-group">
       <input formControlName="language" placeholder="Language" />
       <i class="bi bi-globe"></i>
     </div>
 
     <div class="form-group">
-      <label for="format">
-        Format <i class="bi bi-journal-text"></i>
-      </label>
+      <label for="format">Format <i class="bi bi-journal-text"></i></label>
       <select id="format" formControlName="format">
+        <option value="" disabled selected>-- Select Format --</option>
         <option value="Paperback">Paperback</option>
         <option value="Hardcover">Hardcover</option>
         <option value="Ebook">Ebook</option>
@@ -45,47 +29,67 @@
     </div>
 
     <div class="form-group">
-      <label for="condition">
-        Condition <i class="bi bi-card-checklist"></i>
-      </label>
+      <label for="condition">Condition <i class="bi bi-card-checklist"></i></label>
       <select id="condition" formControlName="condition">
-        <option value="" disabled selected>Select Condition</option>
+        <option value="" disabled selected>-- Select Condition --</option>
         <option value="Like New">Like New</option>
         <option value="Used">Used</option>
         <option value="Old">Old</option>
       </select>
     </div>
 
+    <!-- MAIN CATEGORY -->
     <div class="form-group">
-      <label for="category">
-        Category <i class="bi bi-tags"></i>
-      </label>
-      <select id="category" formControlName="category" (change)="onCategoryChange($event)">
-        <option value="" disabled selected>Select Category</option>
-        <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
-        <option value="Other">Other</option>
+      <label for="mainCategory">Main Category <i class="bi bi-tags"></i></label>
+      <select id="mainCategory" formControlName="mainCategory">
+        <option value="" disabled selected>-- Select Category --</option>
+        <option value="School">School</option>
+        <option value="College">College</option>
+        <option value="Medical">Medical</option>
+        <option value="Others">Others</option>
       </select>
     </div>
 
-    <div class="form-group" *ngIf="isOtherCategory">
-      <input
-        formControlName="customCategory"
-        placeholder="Enter custom category"
-      />
-      <i class="bi bi-pencil"></i>
+    <!-- SCHOOL FIELDS -->
+    <div *ngIf="bookForm.value.mainCategory === 'School'">
+      <input formControlName="schoolClass" placeholder="Class (e.g. 10th)" />
+      <input formControlName="board" placeholder="Board (CBSE, ICSE)" />
+    </div>
+
+    <!-- COLLEGE FIELDS -->
+    <div *ngIf="bookForm.value.mainCategory === 'College'">
+      <select formControlName="collegeLevel">
+        <option value="" disabled selected>-- Select College Level --</option>
+        <option value="+2">+2</option>
+        <option value="+3">+3</option>
+      </select>
+      <select formControlName="stream">
+        <option value="" disabled selected>-- Select Stream --</option>
+        <option value="Science">Science</option>
+        <option value="Commerce">Commerce</option>
+        <option value="Arts">Arts</option>
+      </select>
+      <input formControlName="course" placeholder="Course (BSc, BA, BCom)" />
+      <input formControlName="honors" placeholder="Honors (Mathematics, Chemistry...)" />
+    </div>
+
+    <!-- MEDICAL -->
+    <div *ngIf="bookForm.value.mainCategory === 'Medical'">
+      <input formControlName="medicalCourse" placeholder="Medical Course (MBBS, BDS...)" />
+    </div>
+
+    <!-- OTHERS -->
+    <div *ngIf="bookForm.value.mainCategory === 'Others'">
+      <input formControlName="othersCategory" placeholder="Enter Other Category" />
     </div>
 
     <div class="form-group">
-      <label for="publicationYear">
-        Publication Year <i class="bi bi-calendar"></i>
-      </label>
+      <label for="publicationYear">Publication Year <i class="bi bi-calendar"></i></label>
       <input id="publicationYear" formControlName="publicationYear" type="number" />
     </div>
 
     <div class="form-group">
-      <label for="price">
-        Price (₹)
-      </label>
+      <label for="price">Price (₹)</label>
       <input id="price" formControlName="price" type="number" />
     </div>
 

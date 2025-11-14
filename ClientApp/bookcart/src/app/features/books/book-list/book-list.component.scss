@@ -1,32 +1,68 @@
-/* Filter Bar */
-.filter-bar {
+.filters {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: #f5f7fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
 
   input,
   select {
-    padding: 0.5rem 0.75rem;
-    font-size: 1rem;
+    padding: 0.6rem 0.8rem;
     border: 1px solid #ccc;
-    border-radius: 6px;
-    flex: 1 1 180px;
-    min-width: 100px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    flex: 1;
+    min-width: 140px;   /* reduced slightly */
+    max-width: 100%;    /* ✅ prevents overflow */
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+
+    &:focus {
+      border-color: #3f51b5;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.2);
+    }
   }
 
-  input:focus,
-  select:focus {
-    border-color: #007bff;
-    outline: none;
+  .clear-btn {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #e57373;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+
+  &:hover {
+    background: #c62828;
   }
 }
 
-/* Books Grid */
+
+  input[type="number"] {
+    max-width: 140px;
+
+    @media (max-width: 600px) {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+
+    input,
+    select {
+      min-width: 100%;
+      width: 100%;
+    }
+  }
+}
+
+// /* Books Grid */
 .books-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

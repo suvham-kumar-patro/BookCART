@@ -31,19 +31,26 @@ filterBooks(filters: any): Observable<Book[]> {
   let params = new HttpParams();
 
   if (filters.search) params = params.set('search', filters.search);
-  if (filters.category) params = params.set('category', filters.category);
-  if (filters.format) params = params.set('format', filters.format);
+
+  if (filters.mainCategory) params = params.set('mainCategory', filters.mainCategory);
+  if (filters.schoolClass) params = params.set('schoolClass', filters.schoolClass);
+  if (filters.board) params = params.set('board', filters.board);
+  if (filters.collegeLevel) params = params.set('collegeLevel', filters.collegeLevel);
+  if (filters.stream) params = params.set('stream', filters.stream);
+  if (filters.course) params = params.set('course', filters.course);
+  if (filters.honors) params = params.set('honors', filters.honors);
+  if (filters.medicalCourse) params = params.set('medicalCourse', filters.medicalCourse);
+  if (filters.othersCategory) params = params.set('othersCategory', filters.othersCategory);
+
   if (filters.minPrice != null) params = params.set('minPrice', filters.minPrice.toString());
   if (filters.maxPrice != null) params = params.set('maxPrice', filters.maxPrice.toString());
+  if (filters.format) params = params.set('format', filters.format);
 
   return this.http.get<Book[]>(`https://localhost:7231/api/books/filter`, { params });
 }
-
 
 addBook(formData: FormData): Observable<any> {
   return this.http.post(`${this.apiUrl}/sell`, formData);
     // headers: this.getAuthHeaders());
 }
-
-
 }

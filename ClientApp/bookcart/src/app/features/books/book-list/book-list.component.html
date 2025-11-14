@@ -1,20 +1,87 @@
-<div class="filter-bar">
-  <input type="text" [(ngModel)]="filters.search" (input)="onFilterChange()" placeholder="Search books..." />
+<!-- Filters -->
+<div class="filters">
+  <!-- Search -->
+  <input
+    type="text"
+    placeholder="🔍 Search by title, author, or keyword"
+    [(ngModel)]="filters.search"
+    (ngModelChange)="onFilterChange()"
+  />
 
-  <select [(ngModel)]="filters.category" (change)="onFilterChange()">
-    <option value="">All Categories</option>
-    <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+  <!-- Main Category -->
+  <select [(ngModel)]="filters.mainCategory" (change)="onFilterChange()">
+    <option value="">📚 Select Category</option>
+    <option value="School">School</option>
+    <option value="College">College</option>
+    <option value="Medical">Medical</option>
+    <option value="Others">Others</option>
   </select>
 
+  <!-- School Class -->
+  <select *ngIf="filters.mainCategory === 'School'" [(ngModel)]="filters.schoolClass" (change)="onFilterChange()">
+    <option value="">🎓 Select Class</option>
+    <option *ngFor="let c of schoolClasses" [value]="c">{{ c }}</option>
+  </select>
+
+  <!-- Board -->
+  <select *ngIf="filters.mainCategory === 'School'" [(ngModel)]="filters.board" (change)="onFilterChange()">
+    <option value="">🏫 Select Board</option>
+    <option *ngFor="let b of boards" [value]="b">{{ b }}</option>
+  </select>
+
+  <!-- College Level -->
+  <select *ngIf="filters.mainCategory === 'College'" [(ngModel)]="filters.collegeLevel" (change)="onFilterChange()">
+    <option value="">🎓 Select College Level</option>
+    <option *ngFor="let l of collegeLevels" [value]="l">{{ l }}</option>
+  </select>
+
+  <!-- Stream -->
+  <select *ngIf="filters.collegeLevel === '+2'" [(ngModel)]="filters.stream" (change)="onFilterChange()">
+    <option value="">📖 Select Stream</option>
+    <option *ngFor="let s of streams" [value]="s">{{ s }}</option>
+  </select>
+
+  <!-- Course -->
+  <select *ngIf="filters.collegeLevel === '+3'" [(ngModel)]="filters.course" (change)="onFilterChange()">
+    <option value="">📘 Select Course</option>
+    <option *ngFor="let c of courses" [value]="c">{{ c }}</option>
+  </select>
+
+  <!-- Honours -->
+  <select *ngIf="filters.course === 'BSc' || filters.course === 'BA' || filters.course === 'BCom'" 
+          [(ngModel)]="filters.honors" (change)="onFilterChange()">
+    <option value="">⭐ Select Honours</option>
+    <option *ngFor="let h of honors" [value]="h">{{ h }}</option>
+  </select>
+
+  <!-- Medical Course -->
+  <select *ngIf="filters.mainCategory === 'Medical'" [(ngModel)]="filters.medicalCourse" (change)="onFilterChange()">
+    <option value="">💊 Select Medical Course</option>
+    <option *ngFor="let m of medicalCourses" [value]="m">{{ m }}</option>
+  </select>
+
+  <!-- Others -->
+  <select *ngIf="filters.mainCategory === 'Others'" [(ngModel)]="filters.othersCategory" (change)="onFilterChange()">
+    <option value="">📂 Select Category</option>
+    <option *ngFor="let o of othersCategories" [value]="o">{{ o }}</option>
+  </select>
+
+  <!-- Price Range -->
+  <input type="number" placeholder="₹ Min Price" [(ngModel)]="filters.minPrice" (ngModelChange)="onFilterChange()" />
+  <input type="number" placeholder="₹ Max Price" [(ngModel)]="filters.maxPrice" (ngModelChange)="onFilterChange()" />
+
+  <!-- Format -->
   <select [(ngModel)]="filters.format" (change)="onFilterChange()">
-    <option value="">All Formats</option>
+    <option value="">📖 Select Format</option>
     <option value="Hardcover">Hardcover</option>
     <option value="Paperback">Paperback</option>
     <option value="Ebook">Ebook</option>
+    <option value="PDF">PDF</option>
   </select>
 
-  <input type="number" [(ngModel)]="filters.minPrice" (input)="onFilterChange()" placeholder="Min Price" />
-  <input type="number" [(ngModel)]="filters.maxPrice" (input)="onFilterChange()" placeholder="Max Price" />
+   <button type="button" class="clear-btn" (click)="clearFilters()">
+    Clear All
+  </button>
 </div>
 
 <div class="books-grid">
@@ -33,4 +100,3 @@
       </button>
     </div>
   </div>
-</div>

@@ -1,14 +1,17 @@
 export interface BookFilter {
-  category?: string;
-  stream?: string;
-  exam?: string;
-  subject?: string;
-  author?: string;
-  language?: string;
-  condition?: string;
-  format?: string;
+  search?: string;
+
+  mainCategory?: string;       
+  schoolClass?: string;        
+  board?: string;              
+  collegeLevel?: string;       
+  stream?: string;             
+  course?: string;             
+  honors?: string;            
+  medicalCourse?: string;      
+  othersCategory?: string;     
+  
   minPrice?: number;
   maxPrice?: number;
-  publicationYear?: number;
-  offersOnly?: boolean;
+  format?: string;             
 }

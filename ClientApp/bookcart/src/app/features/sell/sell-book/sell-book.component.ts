@@ -23,26 +23,30 @@ export class SellBookComponent {
   bookForm!: FormGroup;
   selectedImage?: File;
   isOtherCategory = false;
-  categoryOptions = ['Fiction', 'Non-Fiction', 'Science', 'Technology', 'History'];
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   constructor(private fb: FormBuilder, private bookService: BookService, private toastr: ToastrService) {
-  this.bookForm = this.fb.group({
-  title: ['', Validators.required],
-  author: ['', Validators.required],
-  language: ['', Validators.required],
-  format: ['Paperback', Validators.required],
-  condition: ['', Validators.required],
-  category: ['', Validators.required],
-  customCategory: [''],
-  stream: [''],                              
-  exam: [''],                                
-  subject: [''],                             
-  publicationYear: [new Date().getFullYear(), [Validators.required, Validators.min(0)]],
-  price: [0, [Validators.required, Validators.min(1)]],
-  description: ['', Validators.required]
-});
+    this.bookForm = this.fb.group({
+      title: ['', Validators.required],
+      author: ['', Validators.required],
+      language: ['', Validators.required],
+      format: ['', Validators.required],
+      condition: ['', Validators.required],
+      mainCategory: ['', Validators.required],
+      schoolClass: [''],
+      board: [''],
+      collegeLevel: [''],
+      stream: [''],
+      course: [''],
+      honors: [''],
+      medicalCourse: [''],
+      othersCategory: [''],
+
+      publicationYear: [new Date().getFullYear(), [Validators.required, Validators.min(0)]],
+      price: [0, [Validators.required, Validators.min(1)]],
+      description: ['', Validators.required]
+    });
 }
 
   onCategoryChange(event: Event) {
@@ -79,31 +83,29 @@ submit() {
     : this.bookForm.value.category;
 
   const formData = new FormData();
-  formData.append('Title', this.bookForm.value.title);
-  formData.append('Author', this.bookForm.value.author);
-  formData.append('Language', this.bookForm.value.language);
-  formData.append('Format', this.bookForm.value.format);
-  formData.append('Condition', this.bookForm.value.condition);
-  formData.append('Category', finalCategory);
-  formData.append('PublicationYear', this.bookForm.value.publicationYear.toString());
-  formData.append('Price', this.bookForm.value.price.toString());
-  formData.append('Description', this.bookForm.value.description);
-  formData.append('Stream', this.bookForm.value.stream);
-  formData.append('Exam', this.bookForm.value.exam);
-  formData.append('Subject', this.bookForm.value.subject);
-
+  formData.append('Title', this.bookForm.value.title || '');
+  formData.append('Author', this.bookForm.value.author || '');
+  formData.append('Language', this.bookForm.value.language || '');
+  formData.append('Format', this.bookForm.value.format || '');
+  formData.append('Condition', this.bookForm.value.condition || '');
+  formData.append('Category', finalCategory || 'General');   // ✅ safe default
+  formData.append('PublicationYear', this.bookForm.value.publicationYear?.toString() || '0');
+  formData.append('Price', this.bookForm.value.price?.toString() || '0');
+  formData.append('Description', this.bookForm.value.description || '');
+  formData.append('Stream', this.bookForm.value.stream || 'N/A');  
+  formData.append('Exam', this.bookForm.value.exam || 'N/A');      
+  formData.append('Subject', this.bookForm.value.subject || 'N/A');
 
   if (this.selectedImage) {
-    formData.append('Image', this.selectedImage); 
+    formData.append('Image', this.selectedImage);
   }
-  
+
   this.bookService.addBook(formData).subscribe({
     next: () => {
       this.toastr.success('Book submitted successfully!', 'Success');
       this.bookForm.reset();
       this.fileInput.nativeElement.value = '';
     },
-    
     error: (err) => {
       console.error(err);
       this.toastr.error('Failed to submit book', 'Error');
