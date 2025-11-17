@@ -128,19 +128,6 @@ namespace BookCARTWebApi.Controllers
             return Ok(filteredBooks);
         }
 
-
-        //[HttpGet("filter")]
-        //public async Task<IActionResult> FilterBooks(
-        //    [FromQuery] string? search,
-        //    [FromQuery] string? category,
-        //    [FromQuery] decimal? minPrice,
-        //    [FromQuery] decimal? maxPrice,
-        //    [FromQuery] string? format)
-        //{
-        //    var filteredBooks = await _bookRepo.FilterBooksAsync(search, category, minPrice, maxPrice, format);
-        //    return Ok(filteredBooks);
-        //}
-
         [HttpPut("{id}")]
         [Authorize]
         public async Task<IActionResult> UpdateBook(int id, [FromForm] BookUpdateDto dto)
@@ -196,6 +183,7 @@ namespace BookCARTWebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteBook(int id)
         {
             var book = await _bookRepo.GetBookByIdAsync(id);
