@@ -13,6 +13,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { EditBookComponent } from './features/books/edit-book/edit-book.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,5 +28,6 @@ export const routes: Routes = [
   { path: 'profile', component: UserProfileComponent},
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent}
+  { path: 'reset-password', component: ResetPasswordComponent},
+  {path: 'edit-book/:id', canActivate: [AuthGuard], data: { requiresAdmin: true }, component: EditBookComponent }
 ];

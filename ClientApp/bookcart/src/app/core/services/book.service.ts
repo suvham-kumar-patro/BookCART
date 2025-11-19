@@ -46,11 +46,22 @@ filterBooks(filters: any): Observable<Book[]> {
   if (filters.maxPrice != null) params = params.set('maxPrice', filters.maxPrice.toString());
   if (filters.format) params = params.set('format', filters.format);
 
-  return this.http.get<Book[]>(`https://localhost:7231/api/books/filter`, { params });
+  return this.http.get<Book[]>(`https://localhost:7231/api/Books/filter`, { params });
 }
 
 addBook(formData: FormData): Observable<any> {
   return this.http.post(`${this.apiUrl}/sell`, formData);
-    // headers: this.getAuthHeaders());
+}
+
+updateBook(id: number, bookData: FormData): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${id}`, bookData);
+}
+
+updateBookWithFile(id: number, formData: FormData) {
+  return this.http.put(`${this.apiUrl}/upload/${id}`, formData);
+}
+
+deleteBook(id: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/${id}`);
 }
 }

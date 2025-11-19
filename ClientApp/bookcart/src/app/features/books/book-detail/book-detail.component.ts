@@ -16,7 +16,9 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrl: './book-detail.component.scss'
 })
 export class BookDetailComponent implements OnInit {
-  book: Book | null = null;
+  book!: Book;
+  // book: Book | null = null;
+  isAdmin = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +30,7 @@ export class BookDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin();
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.bookService.getBookById(id).subscribe({
       next: (data) => this.book = data,
@@ -49,6 +52,19 @@ export class BookDetailComponent implements OnInit {
 
 goBack(): void {
   this.router.navigate(['/books']);
+}
+
+onEdit(id: number) {
+  this.router.navigate(['/edit-book', id]);
+}
+
+onDelete(id: number) {
+  if (confirm("Are you sure you want to delete this book?")) {
+    this.bookService.deleteBook(id).subscribe(() => {
+      alert("Book deleted successfully!");
+      this.router.navigate(['/books']);
+    });
+  }
 }
 
 }

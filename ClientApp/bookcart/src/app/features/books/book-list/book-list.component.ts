@@ -20,6 +20,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class BookListComponent implements OnInit {
 
   books: Book[] = [];
+  isAdmin = false;
   filters: BookFilter = {
     search: '',
     mainCategory: '',
@@ -56,6 +57,7 @@ export class BookListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin();
     this.loadBooks();
   }
 
@@ -88,5 +90,21 @@ export class BookListComponent implements OnInit {
   }
     this.cartService.addToCart(book);
     this.toastr.success(`"${book.title}" added to cart!`, 'Added to Cart');
+  }
+
+  onEdit(id: number) {
+    this.router.navigate(['/edit-book', id]);
+  }
+
+  onDelete(id: number) {
+    if (!confirm("Are you sure you want to delete this book?")) return;
+
+    this.bookService.deleteBook(id).subscribe({
+      next: () => {
+        alert("Book deleted successfully");
+        this.loadBooks(); // refresh list
+      },
+      error: (err) => console.error(err)
+    });
   }
 }

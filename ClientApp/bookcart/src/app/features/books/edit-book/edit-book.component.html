@@ -1,0 +1,97 @@
+<div class="edit-book-container">
+  <h2>Edit Book</h2>
+
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+    <!-- Image Upload + Preview -->
+    <div class="image-upload">
+      <label for="image">Book Image</label>
+      <input type="file" id="image" (change)="onFileSelected($event)" />
+
+      <div class="preview-container" *ngIf="preview">
+        <img [src]="preview" alt="Preview" />
+      </div>
+    </div>
+
+    <!-- Title -->
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" formControlName="title" placeholder="Enter title" />
+    </div>
+
+    <!-- Author -->
+    <div class="form-group">
+      <label>Author</label>
+      <input type="text" formControlName="author" placeholder="Enter author's name" />
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label>Description</label>
+      <textarea formControlName="description" rows="3" placeholder="Enter description"></textarea>
+    </div>
+
+    <!-- Price -->
+    <div class="form-group">
+      <label>Price</label>
+      <input type="number" formControlName="price" placeholder="Enter price" />
+    </div>
+
+    <!-- Category -->
+    <div class="form-group">
+      <label>Category</label>
+      <select formControlName="category">
+        <option value="">Select Category</option>
+        <option value="School">School</option>
+        <option value="College">College</option>
+        <option value="Medical">Medical</option>
+        <option value="Others">Others</option>
+      </select>
+    </div>
+
+    <!-- Format -->
+    <div class="form-group">
+      <label>Format</label>
+      <select formControlName="format">
+        <option value="">Select Format</option>
+        <option value="Hardcover">Hardcover</option>
+        <option value="Paperback">Paperback</option>
+        <option value="Ebook">Ebook</option>
+      </select>
+    </div>
+
+    <!-- Language -->
+    <div class="form-group">
+      <label>Language</label>
+      <select formControlName="language">
+        <option value="">Select Language</option>
+        <option value="English">English</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Telugu">Telugu</option>
+      </select>
+    </div>
+
+    <!-- Condition -->
+    <div class="form-group">
+      <label>Condition</label>
+      <select formControlName="condition">
+        <option value="">Select Condition</option>
+        <option value="New">New</option>
+        <option value="Used - Good">Used - Good</option>
+        <option value="Used - Fair">Used - Fair</option>
+      </select>
+    </div>
+
+    <!-- Publication Year -->
+    <div class="form-group">
+      <label>Publication Year</label>
+      <input type="number" formControlName="publicationYear" placeholder="Enter publication year" />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="update-btn" [disabled]="editForm.invalid">
+      Update Book
+    </button>
+
+  </form>
+</div>
